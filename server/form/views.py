@@ -1,5 +1,5 @@
 from email.message import EmailMessage
-from .utils import checkData, checkotp, createjwt, createotp, emailbody  # , CustomPerms
+from .utils import checkData, checkotp, createjwt, createotp, emailbody 
 from django.conf import settings
 from rest_framework.response import Response
 from django.http import HttpResponse
@@ -8,6 +8,9 @@ from ratelimit.decorators import ratelimit
 from .mongo import database_entry
 import smtplib
 from .backends import CustomPerms
+import boto3
+
+client = boto3.client('sesv2', region_name='ap-south-1')
 
 
 @ratelimit(key='ip', rate='5/m', method=ratelimit.ALL, block=True)
@@ -19,7 +22,42 @@ def data(request):
         formdata[i['name']] = i['data']
     if checkotp(request.headers['Authorization'], request.data['otp']) and checkData(formdata):
         try:
-            database_entry(formdata)
+            if database_entry(formdata):
+                response = client.send_email(
+                    FromEmailAddress='GitHub Community SRM <community@githubsrm.tech>',
+                    Destination={
+                        'ToAddresses': [
+                            formdata['Email'],
+                        ],
+                    
+                    },
+                    ReplyToAddresses=[
+                        'community@githubsrm.tech',
+                    ],
+
+                    Content={
+                        'Simple': {
+                            'Subject': {
+                                'Data': 'Conformation | GitHub Community SRM',
+                                'Charset': 'utf-8'
+                            },
+                            'Body': {
+                                'Text': {
+                                    'Data': 'string',
+                                    'Charset': 'utf-8'
+                                },
+
+                        'Html': {
+                            'Data': emailbody(formdata['name'], otp=None, path='/home/aradhya/Desktop/oss-idea-form/server/form/email.html'),
+                            'Charset': 'utf-8'
+                                
+                            }
+                        }
+                    },
+                }
+            )
+            # TODO : base dir
+            
             return HttpResponse("Data recieved sucessfully", status=201)
         except Exception as e:
             print(e)
@@ -33,18 +71,43 @@ def data(request):
 def email(request):
     otp = createotp()
     jwt = createjwt(otp)
-    message = EmailMessage()
     try:
-        message["Subject"] = 'OTP'
-        message["From"] = f'Github Community SRM <{settings.EMAIL_HOST_USER}>'
-        message['To'] = request.data["email"]
-        message.set_content(emailbody(otp,request.data["name"]), subtype='html')
-    
-        with smtplib.SMTP_SSL(settings.EMAIL_HOST, 465) as smt:
-            smt.login(settings.EMAIL_HOST_USER, settings.EMAIL_HOST_PASSWORD)
-            smt.send_message(message)
+        response = client.send_email(
+                FromEmailAddress='GitHub Community SRM <community@githubsrm.tech>',
+                Destination={
+                    'ToAddresses': [
+                        f'{request.data.get("email")}',
+                    ],
+                    
+                },
+                ReplyToAddresses=[
+                    'community@githubsrm.tech',
+                ],
+
+                Content={
+                    'Simple': {
+                        'Subject': {
+                            'Data': 'OTP | GitHub Community SRM',
+                            'Charset': 'utf-8'
+                        },
+                        'Body': {
+                            'Text': {
+                                'Data': 'string',
+                                'Charset': 'utf-8'
+                            },
+
+                        'Html': {
+                            'Data': emailbody(otp,request.data["name"], path='/home/aradhya/Desktop/oss-idea-form/server/form/email.html'),
+                            'Charset': 'utf-8'
+                                
+                            }
+                    }
+                },
+            }
+        )
 
         return Response({"jwt": jwt}, status=201)
     except Exception as e:
         print(e)
         return HttpResponse("Internal Server Error", status=500)
+
