@@ -1,5 +1,5 @@
 from email.message import EmailMessage
-from .utils import checkData, checkotp, createjwt, createotp, emailbody 
+from .utils import checkData, checkotp, createjwt, createotp, emailbody
 from django.conf import settings
 from rest_framework.response import Response
 from django.http import HttpResponse
@@ -9,6 +9,7 @@ from .mongo import database_entry
 import smtplib
 from .backends import CustomPerms
 import boto3
+import pathlib
 
 client = boto3.client('sesv2', region_name='ap-south-1')
 
@@ -22,42 +23,41 @@ def data(request):
         formdata[i['name']] = i['data']
     if checkotp(request.headers['Authorization'], request.data['otp']) and checkData(formdata):
         try:
-            if database_entry(formdata):
-                response = client.send_email(
-                    FromEmailAddress='GitHub Community SRM <community@githubsrm.tech>',
-                    Destination={
-                        'ToAddresses': [
-                            formdata['Email'],
-                        ],
-                    
-                    },
-                    ReplyToAddresses=[
-                        'community@githubsrm.tech',
-                    ],
+            database_entry(formdata)
+            response = client.send_email(
+                 FromEmailAddress='GitHub Community SRM <community@githubsrm.tech>',
+                 Destination={
+                     'ToAddresses': [
+                         formdata['College Email'],
+                     ],
 
-                    Content={
-                        'Simple': {
-                            'Subject': {
-                                'Data': 'Conformation | GitHub Community SRM',
-                                'Charset': 'utf-8'
-                            },
-                            'Body': {
-                                'Text': {
-                                    'Data': 'string',
-                                    'Charset': 'utf-8'
-                                },
+                 },
+                 ReplyToAddresses=[
+                     'community@githubsrm.tech',
+                 ],
 
-                        'Html': {
-                            'Data': emailbody(formdata['name'], otp=None, path='/home/aradhya/Desktop/oss-idea-form/server/form/email.html'),
-                            'Charset': 'utf-8'
-                                
-                            }
-                        }
-                    },
-                }
+                 Content={
+                     'Simple': {
+                         'Subject': {
+                             'Data': 'Conformation | GitHub Community SRM',
+                             'Charset': 'utf-8'
+                         },
+                         'Body': {
+                             'Text': {
+                                 'Data': 'string',
+                                 'Charset': 'utf-8'
+                             },
+
+                             'Html': {
+                                 'Data': emailbody(formdata['Name'],'confirm_email.html'),
+                                 'Charset': 'utf-8'
+
+                             }
+                         }
+                     },
+                 }
             )
             # TODO : base dir
-            
             return HttpResponse("Data recieved sucessfully", status=201)
         except Exception as e:
             print(e)
@@ -97,7 +97,7 @@ def email(request):
                             },
 
                         'Html': {
-                            'Data': emailbody(otp,request.data["name"], path='/home/aradhya/Desktop/oss-idea-form/server/form/email.html'),
+                            'Data': emailbody( request.data["name"],'email.html', otp=otp),
                             'Charset': 'utf-8'
                                 
                             }
@@ -105,7 +105,6 @@ def email(request):
                 },
             }
         )
-
         return Response({"jwt": jwt}, status=201)
     except Exception as e:
         print(e)
