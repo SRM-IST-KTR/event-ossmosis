@@ -1,9 +1,10 @@
 <template>
   <section class="form md:justify-center">
     <Field
-      v-for="field in fields"
-      v-bind:key="field.name"
-      v-bind:field="field"
+      v-for="(field, i) in fields"
+      :key="field.name"
+      :field="field"
+      :icon="icons[i]"
       @mutate="change($event, field.name)"
     />
     <div class="w-full md:items-center max-w-sm">
@@ -68,6 +69,7 @@ export default {
       button: {
         name: "Submit",
       },
+      icons: ["AnnotationIcon", null, "LinkIcon"],
       token: "",
       otp: "",
       state: false,
@@ -117,12 +119,16 @@ export default {
     },
     async clickHandler() {
       this.state = true;
+      console.log(this.$props.email);
       await fetch(`${process.env.VUE_APP_SERVER}/api/v1/email/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email: this.$props.email }),
+        body: JSON.stringify({
+          email: this.$props.email["email"],
+          name: this.$props.email["name"],
+        }),
       })
         .then(async (res) => {
           const d = await res.json();

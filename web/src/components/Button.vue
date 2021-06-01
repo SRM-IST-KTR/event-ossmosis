@@ -3,7 +3,7 @@
     class="
       py-2
       px-4
-      bg-green-500
+      bg-black
       text-white
       font-semibold
       rounded-lg

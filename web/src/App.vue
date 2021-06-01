@@ -1,29 +1,66 @@
 <template>
-  <div class="flex flex-col justify-center items-center">
-    <Pagea
-      v-if="state == 0"
-      @mutate="changea($event)"
-      @email="checkmail($event)"
-    />
-    <Pageb
-      v-if="state == 1"
-      @mutate="changeb($event)"
-      @back="back"
-      :error="error"
-      :email="email"
-      :loading="loading"
-      @token="tokenCheck($event)"
-      @otp="otpCheck($event)"
-      @jwt="jwtCheck($event)"
-    />
-    <Pagec v-if="state == 2" />
-  </div>
+  <section class="text-gray-800 section body-font flex h-screen">
+    <div
+      class="container px-5 py-24 mx-auto flex flex-wrap items-center center"
+    >
+      <div
+        class="
+          lg:w-3/5
+          md:w-1/2
+          md:pr-16
+          lg:pr-0
+          pr-0
+          flex
+          space-x-5
+          justify-center
+          items-center
+          center
+        "
+      >
+        <Left />
+      </div>
+      <div
+        class="
+          lg:w-2/6
+          md:w-1/2
+          bg-white
+          rounded-lg
+          p-8
+          flex flex-col
+          md:ml-auto
+          w-full
+          mt-10
+          md:mt-0
+          h-auto
+        "
+      >
+        <Pagea
+          v-if="state == 0"
+          @mutate="changea($event)"
+          @email="checkmail($event)"
+        />
+        <Pageb
+          v-if="state == 1"
+          @mutate="changeb($event)"
+          @back="back"
+          :error="error"
+          :email="email"
+          :loading="loading"
+          @token="tokenCheck($event)"
+          @otp="otpCheck($event)"
+          @jwt="jwtCheck($event)"
+        />
+        <Pagec v-if="state == 2" />
+      </div>
+    </div>
+  </section>
 </template>
 
 <script>
 import Pagea from "./pages/Pagea.vue";
 import Pageb from "./pages/Pageb.vue";
 import Pagec from "./pages/Pagec.vue";
+import Left from "./pages/Left.vue";
 
 export default {
   name: "App",
@@ -31,6 +68,7 @@ export default {
     Pagea,
     Pageb,
     Pagec,
+    Left,
   },
   data() {
     return {
@@ -70,8 +108,8 @@ export default {
       this.email = value;
     },
     async tokenCheck(value) {
-      this.token = value;
       this.loading = true;
+      this.token = value;
       const response = await fetch(
         `${process.env.VUE_APP_SERVER}/api/v1/data/`,
         {
@@ -103,8 +141,10 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  color: #000;
+  height: 100%;
+}
+.section {
+  background-color: #0d1117;
 }
 </style>

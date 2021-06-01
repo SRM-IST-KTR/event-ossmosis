@@ -1,13 +1,16 @@
 <template>
   <section class="form">
     <Field
-      v-for="field in fields"
+      v-for="(field, i) in fields"
       :key="field.name"
       :field="field"
+      :icon="icons[i]"
       @mutate="change($event, field.name)"
       @error="errorCheck($event)"
     />
-    <Button :button="button" @click="submitHandler" />
+    <div class="flex justify-center items-center">
+      <Button :button="button" @click="submitHandler" />
+    </div>
     <p v-if="error.length > 0" class="text-red-700">{{ error }}</p>
   </section>
 </template>
@@ -16,6 +19,7 @@
 import Field from "../components/Field";
 import Button from "../components/Button.vue";
 import { validate } from "../components/validate";
+
 export default {
   name: "Pagea",
   components: { Field, Button },
@@ -24,9 +28,10 @@ export default {
       fields: [
         { name: "Name" },
         { name: "Registration Number" },
-        { name: "Email" },
+        { name: "College Email" },
         { name: "Github Id" },
       ],
+      icons: ["UserIcon", "HashtagIcon", "MailIcon", "GithubSVG"],
       button: {
         name: "Next",
         state: false,
@@ -38,7 +43,7 @@ export default {
     this.fields = [
       { name: "Name" },
       { name: "Registration Number" },
-      { name: "Email" },
+      { name: "College Email" },
       { name: "Github Id" },
     ];
     this.button = {
@@ -60,7 +65,10 @@ export default {
         }
       }
       if (a === 0) {
-        this.$emit("email", this.fields[2]["data"]);
+        this.$emit("email", {
+          email: this.fields[2]["data"],
+          name: this.fields[0]["data"],
+        });
         this.$emit("mutate", this.fields);
       } else {
         this.error = "Form validation error";
