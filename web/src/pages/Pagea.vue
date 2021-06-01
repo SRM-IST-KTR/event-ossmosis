@@ -8,7 +8,7 @@
       @error="errorCheck($event)"
     />
     <Button :button="button" @click="submitHandler" />
-    <p v-if="error.length > 0" class="text-xs text-red-700">{{ error }}</p>
+    <p v-if="error.length > 0" class="text-red-700">{{ error }}</p>
   </section>
 </template>
 
@@ -63,7 +63,7 @@ export default {
         this.$emit("email", this.fields[2]["data"]);
         this.$emit("mutate", this.fields);
       } else {
-        this.error = "Form dhang se bhar le bsdk";
+        this.error = "Form validation error";
       }
     },
     change(value, name) {

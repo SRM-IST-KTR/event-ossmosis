@@ -87,6 +87,7 @@ export default {
           }),
         }
       );
+      this.loading = false;
       if (response.status === 201) {
         this.state = 2;
       } else {

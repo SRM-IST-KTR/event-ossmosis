@@ -46,7 +46,7 @@
       <Button :button="{ name: 'Back' }" @click="backHandler" />
       <Button :button="button" @click="submitHandler" />
     </div>
-    <p v-if="error.status" class="text-xs text-red-700">{{ error.body }}</p>
+    <p v-if="error.status" class="text-red-700">{{ error.body }}</p>
     <p v-if="loading">Submitting...</p>
   </section>
 </template>
