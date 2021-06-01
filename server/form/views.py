@@ -1,5 +1,5 @@
 from email.message import EmailMessage
-from .utils import checkData, checkotp, createjwt, createotp  # , CustomPerms
+from .utils import checkData, checkotp, createjwt, createotp, emailbody  # , CustomPerms
 from django.conf import settings
 from rest_framework.response import Response
 from django.http import HttpResponse
@@ -38,8 +38,8 @@ def email(request):
         message["Subject"] = 'OTP'
         message["From"] = f'Github Community SRM <{settings.EMAIL_HOST_USER}>'
         message['To'] = request.data["email"]
-        message.set_content(f"Your OTP is {otp} which is valid for 5 minutes.")
-
+        message.set_content(emailbody(otp,request.data["name"]), subtype='html')
+    
         with smtplib.SMTP_SSL(settings.EMAIL_HOST, 465) as smt:
             smt.login(settings.EMAIL_HOST_USER, settings.EMAIL_HOST_PASSWORD)
             smt.send_message(message)
