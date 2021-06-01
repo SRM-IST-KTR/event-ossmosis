@@ -6,10 +6,8 @@ from django.http import HttpResponse
 from rest_framework.decorators import api_view, permission_classes
 from ratelimit.decorators import ratelimit
 from .mongo import database_entry
-import smtplib
 from .backends import CustomPerms
 import boto3
-import pathlib
 
 client = boto3.client('sesv2', region_name='ap-south-1')
 
@@ -57,7 +55,6 @@ def data(request):
                      },
                  }
             )
-            # TODO : base dir
             return HttpResponse("Data recieved sucessfully", status=201)
         except Exception as e:
             print(e)
