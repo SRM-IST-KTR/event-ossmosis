@@ -1,11 +1,7 @@
-from email.message import EmailMessage
 from .utils import checkData, checkotp, createjwt, createotp, emailbody
-from django.conf import settings
 from rest_framework.response import Response
 from django.http import HttpResponse
-from rest_framework.decorators import api_view, permission_classes
 from rest_framework.views import APIView
-from ratelimit.decorators import ratelimit
 from .mongo import database_entry
 from .backends import CustomPerms
 import boto3
@@ -30,11 +26,11 @@ class DataEntry(APIView):
         if checkotp(request.headers['Authorization'], request.data['otp']) and checkData(formdata):
             try:
                 if database_entry(formdata):
-                    response = client.send_email(
+                    client.send_email(
                         FromEmailAddress='GitHub Community SRM <community@githubsrm.tech>',
                         Destination={
                             'ToAddresses': [
-                                formdata['Email'],
+                                formdata['College Email'],
                             ],
 
                         },
@@ -55,7 +51,7 @@ class DataEntry(APIView):
                                     },
 
                                     'Html': {
-                                        'Data': emailbody(file='confirm_email.html', name=formdata['name'], otp=None),
+                                        'Data': emailbody(file='confirm_email.html', name=formdata['Name'], otp=None),
                                         'Charset': 'utf-8'
 
                                     }
@@ -63,7 +59,7 @@ class DataEntry(APIView):
                             },
                         }
                     )
-                return HttpResponse("Data recieved sucessfully", status=201)
+                return HttpResponse("Data received successfully", status=201)
             except Exception as e:
                 print(e)
                 return HttpResponse("Internal Server Error", status=500)
@@ -119,7 +115,8 @@ class Email(APIView):
                     },
                 }
             )
+
             return Response({"jwt": jwt}, status=201)
         except Exception as e:
-            print(e)
+            print(e, response)
             return HttpResponse("Internal Server Error", status=500)
