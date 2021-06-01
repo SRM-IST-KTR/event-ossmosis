@@ -13,9 +13,6 @@ import boto3
 client = boto3.client('sesv2', region_name='ap-south-1')
 
 
-<< << << < HEAD
-
-
 class DataEntry(APIView):
     """ 
 
