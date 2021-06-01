@@ -6,6 +6,7 @@ import time
 import math
 import random
 from jinja2 import Template
+import pathlib
 
 
 def validate(name, data):
@@ -62,9 +63,11 @@ def createotp():
     return otp
 
 
-def emailbody(otp, name, path):
-    with open(path) as file_:
+def emailbody(name, file, otp=None):
+    with open(f'{pathlib.Path.cwd()}/form/{file}') as file_:
         template = Template(file_.read())
+
         if otp:
             return template.render(name=name, otp=otp)
+
         return template.render(name=name)

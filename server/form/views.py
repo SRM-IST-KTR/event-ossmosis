@@ -7,11 +7,13 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.views import APIView
 from ratelimit.decorators import ratelimit
 from .mongo import database_entry
-import smtplib
 from .backends import CustomPerms
 import boto3
 
 client = boto3.client('sesv2', region_name='ap-south-1')
+
+
+<< << << < HEAD
 
 
 class DataEntry(APIView):
@@ -22,8 +24,8 @@ class DataEntry(APIView):
     """
 
     permission_classes = [CustomPerms]
-    throttle_scope = 'emails'   
-    
+    throttle_scope = 'emails'
+
     def post(self, request, **kwargs):
         formdata = {}
         for i in request.data['fields']:
@@ -56,7 +58,7 @@ class DataEntry(APIView):
                                     },
 
                                     'Html': {
-                                        'Data': emailbody(formdata['name'], otp=None, path='/home/aradhya/Desktop/oss-idea-form/server/form/email.html'),
+                                        'Data': emailbody(formdata['name'], otp=None),
                                         'Charset': 'utf-8'
 
                                     }
@@ -64,8 +66,6 @@ class DataEntry(APIView):
                             },
                         }
                     )
-                # TODO : base dir
-
                 return HttpResponse("Data recieved sucessfully", status=201)
             except Exception as e:
                 print(e)
@@ -114,7 +114,7 @@ class Email(APIView):
                             },
 
                             'Html': {
-                                'Data': emailbody(otp, request.data["name"], path='/home/aradhya/Desktop/oss-idea-form/server/form/email.html'),
+                                'Data': emailbody(otp, request.data["name"]),
                                 'Charset': 'utf-8'
 
                             }
@@ -122,7 +122,6 @@ class Email(APIView):
                     },
                 }
             )
-
             return Response({"jwt": jwt}, status=201)
         except Exception as e:
             print(e)
