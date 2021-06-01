@@ -3,9 +3,15 @@ import requests
 import os
 from dotenv import load_dotenv
 
+
 class CustomPerms(BasePermission):
     def has_permission(self, request, view):
-        return self.checkToken(token=request.META['HTTP_X_RECAPTCHA_TOKEN'])
+        try:
+            return self.checkToken(token=request.META['HTTP_X_RECAPTCHA_TOKEN'])
+
+        except Exception as e:
+            print(e)
+            return False
 
     def checkToken(self, token):
         url = "https://www.google.com/recaptcha/api/siteverify"
