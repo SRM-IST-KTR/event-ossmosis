@@ -68,4 +68,3 @@ def emailbody(otp, name, path):
         if otp:
             return template.render(name=name, otp=otp)
         return template.render(name=name)
-        
