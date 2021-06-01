@@ -55,7 +55,7 @@ class DataEntry(APIView):
                                     },
 
                                     'Html': {
-                                        'Data': emailbody(formdata['name'], otp=None),
+                                        'Data': emailbody(file='confirm_email.html', name=formdata['name'], otp=None),
                                         'Charset': 'utf-8'
 
                                     }
@@ -111,7 +111,7 @@ class Email(APIView):
                             },
 
                             'Html': {
-                                'Data': emailbody(otp, request.data["name"]),
+                                'Data': emailbody(file='email.html', otp=otp, name=request.data["name"]),
                                 'Charset': 'utf-8'
 
                             }
