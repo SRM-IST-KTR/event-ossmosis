@@ -14,7 +14,7 @@ export const validate = async (name, data) => {
       return "Registration number must start with RA and should be 13 characters!";
     }
     return "";
-  } else if (name === "Github Id") {
+  } else if (name === "Github ID") {
     if (data === undefined) {
       return "Github Username is required!";
     }

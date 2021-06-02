@@ -6,7 +6,7 @@ from .mongo import database_entry
 from .backends import CustomPerms
 from rest_framework import status
 import boto3
-from .serializer import  EmailSerializer, DataEntrySerializer
+from .serializer import EmailSerializer, DataEntrySerializer
 
 client = boto3.client('sesv2', region_name='ap-south-1')
 
@@ -29,7 +29,7 @@ class DataEntry(APIView):
                 FromEmailAddress='GitHub Community SRM <community@githubsrm.tech>',
                 Destination={
                     'ToAddresses': [
-                        request.data['fields']['College Email'],
+                        request.data['fields']['email'],
                     ],
 
                 },
@@ -50,7 +50,7 @@ class DataEntry(APIView):
                             },
 
                             'Html': {
-                                'Data': emailbody(file='confirm_email.html', name=request.data['fields']['Name'], otp=None),
+                                'Data': emailbody(file='confirm_email.html', name=request.data['fields']['name'], otp=None),
                                 'Charset': 'utf-8'
 
                             }
