@@ -7,9 +7,9 @@
       :icon="icons[i]"
       @mutate="change($event, field.name)"
     />
-    <div class="w-full md:items-center max-w-sm">
-      <div class="md:flex md:items-center mb-6">
-        <div class="md:w-1/3">
+    <div class="w-full md:items-center">
+      <div class="mb-6">
+        <div class="">
           <label
             class="block text-gray-500 font-bold mb-1 md:mb-0 pr-4"
             for="inline-full-name"
@@ -20,7 +20,7 @@
         <div v-if="!state">
           <Button :button="{ name: 'Get OTP' }" @click="clickHandler" />
         </div>
-        <div class="md:w-2/3" v-else>
+        <div class="" v-else>
           <input
             class="
               bg-gray-200
@@ -43,7 +43,7 @@
         </div>
       </div>
     </div>
-    <div class="flex space-x-5 justify-center items-center">
+    <div class="flex space-x-5 float-right">
       <Button :button="{ name: 'Back' }" @click="backHandler" />
       <Button :button="button" @click="submitHandler" />
     </div>

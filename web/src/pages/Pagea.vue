@@ -8,7 +8,7 @@
       @mutate="change($event, field.name)"
       @error="errorCheck($event)"
     />
-    <div class="flex justify-center items-center">
+    <div class="flex float-right">
       <Button :button="button" @click="submitHandler" />
     </div>
     <p v-if="error.length > 0" class="text-red-700">{{ error }}</p>
