@@ -81,11 +81,14 @@ export default {
       loading: false,
     };
   },
+  beforeMount() {
+    console.log("beforemount");
+    sessionStorage.clear();
+  },
   mounted() {
     this.state = 0;
     this.fields = {};
     this.loading = false;
-    sessionStorage.clear();
   },
   methods: {
     back() {
