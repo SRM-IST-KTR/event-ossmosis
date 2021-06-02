@@ -127,7 +127,7 @@ export default {
         }
       );
       this.loading = false;
-      if (response.status === 201) {
+      if (response.status === 200) {
         this.state = 2;
       } else {
         this.error = { status: response.status, body: response.statusText };
