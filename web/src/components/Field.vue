@@ -199,12 +199,11 @@
                 ? 'bg-gray-200 appearance-none border-2 border-red-500 rounded w-full py-3 px-9 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500'
                 : ' bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-3 px-9 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500'
             "
-            @input="updateField($event.target.value)"
+            v-model="fielddata"
             type="text"
             :placeholder="field.name"
             @change="mutate"
             @blur="handleBlur"
-            :value="fielddata"
           />
         </div>
       </div>
