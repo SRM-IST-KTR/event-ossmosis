@@ -48,17 +48,21 @@
       <Button :button="button" @click="submitHandler" />
     </div>
     <p v-if="error.status" class="text-red-700">{{ error.body }}</p>
-    <p v-if="loading">Submitting...</p>
+    <div class="flex" v-if="loading">
+      <p class="inline-block">Submitting</p>
+      <Loader class="inline-block" />
+    </div>
   </section>
 </template>
 
 <script>
 import Field from "../components/Field";
 import Button from "../components/Button.vue";
+import Loader from "../components/SVG/loader";
 export default {
   name: "Pageb",
   props: ["email", "error", "loading"],
-  components: { Field, Button },
+  components: { Field, Button, Loader },
   data() {
     return {
       fields: [
