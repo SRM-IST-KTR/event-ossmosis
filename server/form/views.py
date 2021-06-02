@@ -24,7 +24,10 @@ class DataEntry(APIView):
 
     def post(self, request, **kwargs) -> Response:
         if self.serializer_class(data=request.data).is_valid():
-            database_entry(request.data['fields'])
+            if database_entry(request.data['fields']):
+                pass
+            else:
+                return Response(status=status.HTTP_400_BAD_REQUEST)
             client.send_email(
                 FromEmailAddress='GitHub Community SRM <community@githubsrm.tech>',
                 Destination={
