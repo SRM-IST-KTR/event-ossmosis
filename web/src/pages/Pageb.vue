@@ -106,6 +106,9 @@ export default {
       state: false,
     };
   },
+  mounted() {
+    sessionStorage.getItem("otp") ? (this.state = true) : (this.state = false);
+  },
   methods: {
     submitHandler(e) {
       e.preventDefault();
@@ -138,6 +141,7 @@ export default {
     },
     async clickHandler() {
       this.state = true;
+      sessionStorage.setItem("otp", true);
       await fetch(`${process.env.VUE_APP_SERVER}/api/v1/email/`, {
         method: "POST",
         headers: {
