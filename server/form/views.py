@@ -19,18 +19,15 @@ class DataEntry(APIView):
     permission_classes = [CustomPerms]
     throttle_scope = 'emails'
 
-    def post(self, request, **kwargs):
-        formdata = {}
-        for i in request.data['fields']:
-            formdata[i['name']] = i['data']
-        if checkotp(request.headers['Authorization'], request.data['otp']) and checkData(formdata):
+    def post(self, request, **kwargs):        
+        if checkotp(request.headers['Authorization'], request.data['otp']) and checkData(request.data['fields']):
             try:
-                if database_entry(formdata):
+                if database_entry(request.data['fields']):
                     client.send_email(
                         FromEmailAddress='GitHub Community SRM <community@githubsrm.tech>',
                         Destination={
                             'ToAddresses': [
-                                formdata['College Email'],
+                                request.data['fields']['College Email'],
                             ],
 
                         },
@@ -51,7 +48,7 @@ class DataEntry(APIView):
                                     },
 
                                     'Html': {
-                                        'Data': emailbody(file='confirm_email.html', name=formdata['Name'], otp=None),
+                                        'Data': emailbody(file='confirm_email.html', name=request.data['fields']['Name'], otp=None),
                                         'Charset': 'utf-8'
 
                                     }
