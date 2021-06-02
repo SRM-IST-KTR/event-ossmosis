@@ -27,29 +27,31 @@ export default {
     return {
       fields: [
         {
+          index: "name",
           name: "Name",
           data: sessionStorage.getItem("formdata")
-            ? JSON.parse(sessionStorage.getItem("formdata"))["Name"]
+            ? JSON.parse(sessionStorage.getItem("formdata"))["name"]
             : "",
         },
         {
+          index: "registrationNum",
           name: "Registration Number",
           data: sessionStorage.getItem("formdata")
-            ? JSON.parse(sessionStorage.getItem("formdata"))[
-                "Registration Number"
-              ]
+            ? JSON.parse(sessionStorage.getItem("formdata"))["registrationNum"]
             : "",
         },
         {
+          index: "email",
           name: "College Email",
           data: sessionStorage.getItem("formdata")
-            ? JSON.parse(sessionStorage.getItem("formdata"))["College Email"]
+            ? JSON.parse(sessionStorage.getItem("formdata"))["email"]
             : "",
         },
         {
-          name: "Github Id",
+          index: "githubId",
+          name: "Github ID",
           data: sessionStorage.getItem("formdata")
-            ? JSON.parse(sessionStorage.getItem("formdata"))["Github Id"]
+            ? JSON.parse(sessionStorage.getItem("formdata"))["githubId"]
             : "",
         },
       ],
@@ -60,9 +62,6 @@ export default {
       },
       error: "",
     };
-  },
-  mounted() {
-    sessionStorage.clear();
   },
   methods: {
     async submitHandler() {

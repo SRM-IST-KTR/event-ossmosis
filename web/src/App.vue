@@ -84,18 +84,19 @@ export default {
     this.state = 0;
     this.fields = {};
     this.loading = false;
+    sessionStorage.clear();
   },
   methods: {
     back() {
       this.state = 0;
     },
     changea(value) {
-      value.map((i) => (this.fields[i["name"]] = i["data"]));
+      value.map((i) => (this.fields[i["index"]] = i["data"]));
       sessionStorage.setItem("formdata", JSON.stringify(this.fields));
       this.state = 1;
     },
     changeb(value) {
-      value.map((i) => (this.fields[i["name"]] = i["data"]));
+      value.map((i) => (this.fields[i["index"]] = i["data"]));
       sessionStorage.setItem("formdata", JSON.stringify(this.fields));
     },
     otpCheck(value) {

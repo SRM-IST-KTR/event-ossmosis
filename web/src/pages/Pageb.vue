@@ -63,24 +63,27 @@ export default {
     return {
       fields: [
         {
+          index: "projectTitle",
           name: "Project Title",
           data: sessionStorage.getItem("formdata")
-            ? JSON.parse(sessionStorage.getItem("formdata"))["Project Title"]
+            ? JSON.parse(sessionStorage.getItem("formdata"))["projectTitle"]
             : "",
         },
         {
+          index: "projectDescription",
           name: "Project Description",
           data: sessionStorage.getItem("formdata")
             ? JSON.parse(sessionStorage.getItem("formdata"))[
-                "Project Description"
+                "projectDescription"
               ]
             : "",
         },
         {
+          index: "projectLink",
           name: "Project Link",
           placeholder: "https://github.com/profile/repo",
           data: sessionStorage.getItem("formdata")
-            ? JSON.parse(sessionStorage.getItem("formdata"))["Project Link"]
+            ? JSON.parse(sessionStorage.getItem("formdata"))["projectLink"]
             : "",
         },
       ],

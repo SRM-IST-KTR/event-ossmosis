@@ -240,7 +240,7 @@ export default {
   mounted() {
     sessionStorage.getItem("formdata")
       ? (this.fielddata = JSON.parse(sessionStorage.getItem("formdata"))[
-          this.$props.field["name"]
+          this.$props.field["index"]
         ])
       : (this.fielddata = "");
   },
