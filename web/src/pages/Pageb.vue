@@ -78,6 +78,7 @@ export default {
         },
         {
           name: "Project Link",
+          placeholder: "https://github.com/profile/repo",
           data: sessionStorage.getItem("formdata")
             ? JSON.parse(sessionStorage.getItem("formdata"))["Project Link"]
             : "",

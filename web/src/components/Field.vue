@@ -201,7 +201,7 @@
             "
             v-model="fielddata"
             type="text"
-            :placeholder="field.name"
+            :placeholder="field.placeholder ? field.placeholder : field.name"
             @change="mutate"
             @blur="handleBlur"
           />
@@ -252,13 +252,13 @@ export default {
       this.$emit("mutate", this.fielddata.trim());
       this.error = await validate(
         this.$props.field.name,
-        this.fielddata.trim()
+        this.fielddata ? this.fielddata.trim() : ""
       );
     },
     async handleBlur() {
       this.error = await validate(
         this.$props.field.name,
-        this.fielddata.trim()
+        this.fielddata ? this.fielddata.trim() : ""
       );
     },
   },
