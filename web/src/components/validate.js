@@ -1,10 +1,8 @@
 const yup = require("yup");
 
 export const validate = async (name, data) => {
-  console.log(name);
   if (name === "College Email") {
     try {
-      console.log(data);
       await emailSchema.validate(data);
       return "";
     } catch (err) {
