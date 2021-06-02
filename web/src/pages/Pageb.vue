@@ -14,7 +14,7 @@
             class="block text-gray-500 font-bold mb-1 md:mb-0 pr-4"
             for="inline-full-name"
           >
-            OTP
+            Validate Email
           </label>
         </div>
         <div v-if="!state">
@@ -62,9 +62,26 @@ export default {
   data() {
     return {
       fields: [
-        { name: "Project Title" },
-        { name: "Project Description" },
-        { name: "Project Link" },
+        {
+          name: "Project Title",
+          data: sessionStorage.getItem("formdata")
+            ? JSON.parse(sessionStorage.getItem("formdata"))["Project Title"]
+            : "",
+        },
+        {
+          name: "Project Description",
+          data: sessionStorage.getItem("formdata")
+            ? JSON.parse(sessionStorage.getItem("formdata"))[
+                "Project Description"
+              ]
+            : "",
+        },
+        {
+          name: "Project Link",
+          data: sessionStorage.getItem("formdata")
+            ? JSON.parse(sessionStorage.getItem("formdata"))["Project Link"]
+            : "",
+        },
       ],
       button: {
         name: "Submit",
@@ -74,19 +91,6 @@ export default {
       otp: "",
       state: false,
     };
-  },
-  mounted() {
-    this.fields = [
-      { name: "Project Title" },
-      { name: "Project Description" },
-      { name: "Project Link" },
-    ];
-    this.button = {
-      name: "Submit",
-    };
-    this.token = "";
-    this.otp = "";
-    this.state = false;
   },
   methods: {
     submitHandler(e) {
@@ -108,6 +112,7 @@ export default {
       this.$emit("otp", this.otp);
     },
     backHandler() {
+      this.$emit("mutate", this.fields);
       this.$emit("back", "0");
     },
     change(value, name) {
@@ -119,7 +124,6 @@ export default {
     },
     async clickHandler() {
       this.state = true;
-      console.log(this.$props.email);
       await fetch(`${process.env.VUE_APP_SERVER}/api/v1/email/`, {
         method: "POST",
         headers: {

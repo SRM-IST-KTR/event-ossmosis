@@ -26,10 +26,32 @@ export default {
   data() {
     return {
       fields: [
-        { name: "Name" },
-        { name: "Registration Number" },
-        { name: "College Email" },
-        { name: "Github Id" },
+        {
+          name: "Name",
+          data: sessionStorage.getItem("formdata")
+            ? JSON.parse(sessionStorage.getItem("formdata"))["Name"]
+            : "",
+        },
+        {
+          name: "Registration Number",
+          data: sessionStorage.getItem("formdata")
+            ? JSON.parse(sessionStorage.getItem("formdata"))[
+                "Registration Number"
+              ]
+            : "",
+        },
+        {
+          name: "College Email",
+          data: sessionStorage.getItem("formdata")
+            ? JSON.parse(sessionStorage.getItem("formdata"))["College Email"]
+            : "",
+        },
+        {
+          name: "Github Id",
+          data: sessionStorage.getItem("formdata")
+            ? JSON.parse(sessionStorage.getItem("formdata"))["Github Id"]
+            : "",
+        },
       ],
       icons: ["UserIcon", "HashtagIcon", "MailIcon", "GithubSVG"],
       button: {
@@ -40,17 +62,7 @@ export default {
     };
   },
   mounted() {
-    this.fields = [
-      { name: "Name" },
-      { name: "Registration Number" },
-      { name: "College Email" },
-      { name: "Github Id" },
-    ];
-    this.button = {
-      name: "Next",
-      state: false,
-    };
-    this.error = "";
+    sessionStorage.clear();
   },
   methods: {
     async submitHandler() {

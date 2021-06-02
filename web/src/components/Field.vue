@@ -1,7 +1,7 @@
 <template>
   <div>
     <div
-      class="w-auto md:items-center "
+      class="w-auto md:items-center"
       v-if="field.name.includes('Description')"
     >
       <div class="mb-6">
@@ -30,7 +30,7 @@
       </div>
     </div>
     <div
-      class="w-auto md:items-center "
+      class="w-auto md:items-center"
       v-else-if="field.name === 'College Email'"
     >
       <div class="mb-6">
@@ -51,7 +51,6 @@
               font-normal
               absolute
               text-center text-blueGray-300
-              absolute
               bg-transparent
               rounded
               text-base
@@ -78,7 +77,7 @@
         </div>
       </div>
     </div>
-    <div class="w-auto md:items-center " v-else>
+    <div class="w-auto md:items-center" v-else>
       <div class="mb-6">
         <div class="">
           <label
@@ -98,7 +97,6 @@
               font-normal
               absolute
               text-center text-blueGray-300
-              absolute
               bg-transparent
               rounded
               text-base
@@ -120,7 +118,6 @@
               font-normal
               absolute
               text-center text-blueGray-300
-              absolute
               bg-transparent
               rounded
               text-base
@@ -142,7 +139,6 @@
               font-normal
               absolute
               text-center text-blueGray-300
-              absolute
               bg-transparent
               rounded
               text-base
@@ -164,7 +160,6 @@
               font-normal
               absolute
               text-center text-blueGray-300
-              absolute
               bg-transparent
               rounded
               text-base
@@ -186,7 +181,6 @@
               font-normal
               absolute
               text-center text-blueGray-300
-              absolute
               bg-transparent
               rounded
               text-base
@@ -205,11 +199,12 @@
                 ? 'bg-gray-200 appearance-none border-2 border-red-500 rounded w-full py-3 px-9 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500'
                 : ' bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-3 px-9 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500'
             "
-            v-model="fielddata"
+            @input="updateField($event.target.value)"
             type="text"
             :placeholder="field.name"
             @change="mutate"
             @blur="handleBlur"
+            :value="fielddata"
           />
         </div>
       </div>
@@ -244,15 +239,28 @@ export default {
     };
   },
   mounted() {
-    console.log(this.$props.icon);
+    sessionStorage.getItem("formdata")
+      ? (this.fielddata = JSON.parse(sessionStorage.getItem("formdata"))[
+          this.$props.field["name"]
+        ])
+      : (this.fielddata = "");
   },
   methods: {
+    updateField(value) {
+      this.fielddata = value;
+    },
     mutate: async function () {
-      this.$emit("mutate", this.fielddata);
-      this.error = await validate(this.$props.field.name, this.fielddata);
+      this.$emit("mutate", this.fielddata.trim());
+      this.error = await validate(
+        this.$props.field.name,
+        this.fielddata.trim()
+      );
     },
     async handleBlur() {
-      this.error = await validate(this.$props.field.name, this.fielddata);
+      this.error = await validate(
+        this.$props.field.name,
+        this.fielddata.trim()
+      );
     },
   },
 };
