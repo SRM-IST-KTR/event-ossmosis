@@ -1,14 +1,9 @@
 <template>
   <button
-    class="
-      py-2
-      px-4
-      bg-black
-      text-white
-      font-semibold
-      rounded-lg
-      shadow-md
-      focus:outline-none
+    :class="
+      check && disable
+        ? 'py-2 px-4 bg-gray-500 text-white font-semibold rounded-lg shadow-md focus:outline-none cursor-not-allowed'
+        : 'py-2 px-4 bg-black text-white font-semibold rounded-lg shadow-md focus:outline-none'
     "
   >
     {{ button.name }}
@@ -18,7 +13,7 @@
 <script>
 export default {
   name: "Button",
-  props: ["button"],
+  props: ["button", "disable", "check"],
 };
 </script>
 

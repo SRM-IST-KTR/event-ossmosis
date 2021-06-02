@@ -45,10 +45,16 @@
     </div>
     <div class="flex space-x-5 float-right">
       <Button :button="{ name: 'Back' }" @click="backHandler" />
-      <Button :button="button" @click="submitHandler" />
+      <Button
+        :button="button"
+        :disabled="!state"
+        :disable="!state"
+        :check="true"
+        @click="submitHandler"
+      />
     </div>
     <p v-if="error.status" class="text-red-700">{{ error.body }}</p>
-    <div class="flex" v-if="loading">
+    <div class="flex space-x-4" v-if="loading">
       <p class="inline-block">Submitting</p>
       <Loader class="inline-block" />
     </div>

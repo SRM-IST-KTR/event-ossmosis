@@ -109,6 +109,7 @@ export default {
       this.email = value;
     },
     async tokenCheck(value) {
+      this.error = {};
       this.loading = true;
       this.token = value;
       const response = await fetch(
