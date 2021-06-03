@@ -20,12 +20,12 @@ body {
   background: #0d1117;
   width: 100%;
   height: 100%;
-  overflow: hidden;
-  font-family: "Varela Round", sans-serif;
   letter-spacing: 0.1em;
   font-smooth: antialiased;
 }
-
+#app {
+  background: #0d1117 !important;
+}
 .space {
   width: 100%;
   height: 100%;
