@@ -1,20 +1,10 @@
 <template>
-  <div class="flex flex-wrap">
+  <div class="flex flex-wrap mt-2 lg:mt-0">
     <div class="w-full">
-      <ul class="flex justify-between mb-0 list-none pt-3 pb-4 flex-row">
+      <ul class="flex justify-between mb-0 list-none pb-4 flex-row uppercase font-bold text-xxs sm:text-xs">
         <li class="-mb-px w-full text-center">
           <a
-            class="
-              text-xs
-              font-bold
-              uppercase
-              py-3
-              shadow-lg
-              rounded
-              block
-              leading-normal
-              cursor-pointer
-            "
+            class="py-3 shadow-lg rounded block leading-normal cursor-pointer"
             v-on:click="toggleTabs(1)"
             v-bind:class="{
               'text-gray-600 bg-white': openTab !== 1,
@@ -26,17 +16,7 @@
         </li>
         <li class="-mb-px mx-2 w-full text-center">
           <a
-            class="
-              text-xs
-              font-bold
-              uppercase
-              py-3
-              shadow-lg
-              rounded
-              block
-              leading-normal
-              cursor-pointer
-            "
+            class="py-3 shadow-lg rounded block leading-normal cursor-pointer"
             v-on:click="toggleTabs(2)"
             v-bind:class="{
               'text-gray-600 bg-white': openTab !== 2,
@@ -48,17 +28,7 @@
         </li>
         <li class="-mb-px w-full text-center">
           <a
-            class="
-              text-xs
-              font-bold
-              uppercase
-              py-3
-              shadow-lg
-              rounded
-              block
-              leading-normal
-              cursor-pointer
-            "
+            class="py-3 shadow-lg rounded block leading-normal cursor-pointer"
             v-on:click="toggleTabs(3)"
             v-bind:class="{
               'text-gray-600 bg-white': openTab !== 3,
@@ -70,26 +40,16 @@
         </li>
       </ul>
       <div
-        class="
-          relative
-          flex flex-col
-          min-w-0
-          break-words
-          bg-white
-          w-full
-          mb-6
-          shadow-lg
-          rounded
-        "
+        class="relative flex flex-col min-w-0 break-words bg-white w-full shadow-lg rounded"
       >
-        <div class="px-8 py-8 flex-auto min-h-detailBox">
+        <div class="p-2 sm:p-4 md:p-8 flex-auto">
           <div class="tab-content tab-space">
             <div v-bind:class="{ hidden: openTab !== 1, block: openTab === 1 }">
               <p>Ever wondered how far your project meets OSS criteria?</p>
               <p>Does your project have a proper commit history?</p>
               <p>A license and a readme?</p>
               <p>Are your pull requests up to the mark?</p>
-              <br>
+              <br />
               <p>
                 We wondered about it too, and we ended up with OSSmosis, a
                 chance for you to flex your OSS projects and win exciting
@@ -100,7 +60,7 @@
                 and stand a chance to be awarded the honour of "Best OSS
                 Project" by the community.
               </p>
-              <br>
+              <br />
               <p>
                 Visit the link in the bio to know more about the participation
                 rules.

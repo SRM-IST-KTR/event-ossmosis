@@ -9,7 +9,7 @@ export default function ConfettiGenerator(params) {
   // Defaults
   var appstate = {
     target: "confetti-holder", // Id of the canvas
-    max: 80, // Max itens to render
+    max: 500, // Max itens to render
     size: 1, // prop size
     animate: true, // Should animate?
     respawn: true, // Should confettis be respawned when getting out of screen?

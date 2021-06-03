@@ -8,7 +8,7 @@
       @mutate="change($event, field.name)"
     />
     <div class="w-full md:items-center">
-      <div class="mb-6">
+      <div class="mb-2">
         <div class="">
           <label
             class="block text-gray-500 font-bold mb-1 md:mb-0 pr-4"
@@ -22,20 +22,7 @@
         </div>
         <div class="" v-else>
           <input
-            class="
-              bg-gray-200
-              appearance-none
-              border-2 border-gray-200
-              rounded
-              w-full
-              py-2
-              px-4
-              text-gray-700
-              leading-tight
-              focus:outline-none
-              focus:bg-white
-              focus:border-gray-600
-            "
+            class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-600"
             v-model="otp"
             type="text"
             placeholder="OTP recieved in Email"
@@ -171,5 +158,3 @@ export default {
   },
 };
 </script>
-
-<style></style>

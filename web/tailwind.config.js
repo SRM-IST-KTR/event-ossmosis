@@ -4,10 +4,13 @@ module.exports = {
   theme: {
     extend: {
       minHeight: {
-        'detailBox': '25em',
-       }
+        detailBox: "30em",
+        "80-screen": "80vh",
+      },
+      fontSize: {
+        xxs: "0.5rem",
+      },
     },
-    
   },
   variants: {
     extend: {},

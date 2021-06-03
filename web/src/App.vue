@@ -15,8 +15,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   color: #000;
   height: 100%;
-}
-.section {
   background-color: #0d1117;
 }
 </style>

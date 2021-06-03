@@ -1,15 +1,8 @@
 <template>
   <div id="container" class="relative h-full overflow-hidden flex w-full">
-    <div class="text-center flex flex-col items-center justify-center">
+    <div class="text-center flex flex-col items-center justify-center m-auto">
       <p
-        class="
-          2xl:text-4xl
-          xl:text-3xl
-          lg:text-2xl
-          md:text-2xl
-          text-3xl
-          font-bold
-        "
+        class="2xl:text-4xl xl:text-3xl lg:text-2xl md:text-2xl text-3xl font-bold"
       >
         Congratulations
       </p>
@@ -19,7 +12,7 @@
     </div>
     <canvas
       id="my-canvas"
-      class="absolute top-0 bottom-0 left-0 right-0"
+      class="absolute m-auto"
     ></canvas>
   </div>
 </template>
@@ -34,14 +27,14 @@ export default {
     // const div = document.getElementById("div");
     const confettiSettings = {
       target: "my-canvas",
-      height:"500",
-      width:"500"
+      height: "750",
+      width: "1024",
     };
     const confetti = new ConfettiGenerator(confettiSettings);
     confetti.render();
     setInterval(function () {
       confetti.clear();
-    }, 5000);
+    }, 7500);
   },
 };
 </script>
