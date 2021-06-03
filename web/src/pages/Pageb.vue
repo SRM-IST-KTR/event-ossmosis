@@ -144,7 +144,7 @@ export default {
     async clickHandler() {
       this.state = true;
       sessionStorage.setItem("otp", true);
-      await fetch(`${process.env.VUE_APP_SERVER}/api/v1/email/`, {
+      await fetch(`/api/v1/email/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
