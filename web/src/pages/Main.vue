@@ -115,21 +115,18 @@ export default {
       this.error = {};
       this.loading = true;
       this.token = value;
-      const response = await fetch(
-        `${process.env.VUE_APP_SERVER}/api/v1/data/`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${this.jwt}`,
-            "X-Recaptcha-Token": this.token,
-          },
-          body: JSON.stringify({
-            fields: this.fields,
-            otp: this.otp,
-          }),
-        }
-      );
+      const response = await fetch(`/api/v1/data/`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${this.jwt}`,
+          "X-Recaptcha-Token": this.token,
+        },
+        body: JSON.stringify({
+          fields: this.fields,
+          otp: this.otp,
+        }),
+      });
       this.loading = false;
       if (response.status === 200) {
         this.state = 2;
