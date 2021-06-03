@@ -2,13 +2,12 @@
   <div class="flex flex-wrap">
     <div class="w-full">
       <ul class="flex justify-between mb-0 list-none pt-3 pb-4 flex-row">
-        <li class="-mb-px w-56 text-center">
+        <li class="-mb-px mr-2 w-3/12 text-center">
           <a
             class="
               text-xs
               font-bold
               uppercase
-              px-5
               py-3
               shadow-lg
               rounded
@@ -25,13 +24,12 @@
             Description
           </a>
         </li>
-        <li class="-mb-px w-56 text-center">
+        <li class="-mb-px mx-2 w-3/12 text-center">
           <a
             class="
               text-xs
               font-bold
               uppercase
-              px-5
               py-3
               shadow-lg
               rounded
@@ -48,13 +46,12 @@
             Rules
           </a>
         </li>
-        <li class="-mb-px w-56 text-center">
+        <li class="-mb-px mx-2 w-3/12 text-center">
           <a
             class="
               text-xs
               font-bold
               uppercase
-              px-5
               py-3
               shadow-lg
               rounded
@@ -71,6 +68,26 @@
             Criteria
           </a>
         </li>
+        <li class="-mb-px ml-2 w-3/12 lg:hidden text-center">
+          <a
+            class="
+              text-xs
+              font-bold
+              uppercase
+              py-3
+              shadow-lg
+              rounded
+              block
+              leading-normal
+              cursor-pointer
+              text-gray-600
+              bg-white
+            "
+            href="#form"
+          >
+            Apply Now!
+          </a>
+        </li>
       </ul>
       <div
         class="
@@ -85,7 +102,7 @@
           rounded
         "
       >
-        <div class="px-8 py-8 flex-auto min-h-96">
+        <div class="px-8 py-8 flex-auto min-h-96\">
           <div class="tab-content tab-space">
             <div v-bind:class="{ hidden: openTab !== 1, block: openTab === 1 }">
               <p>
@@ -159,7 +176,7 @@
 
 <script>
 export default {
-  name: "pink-tabs",
+  name: "tabs",
   data() {
     return {
       openTab: 1,

@@ -1,13 +1,24 @@
 <template>
-  <section class="text-gray-800 section body-font flex md:h-screen sm:h-full">
-    <div class="container px-5 py-5 mx-auto flex flex-wrap items-center center">
+  <section class="text-gray-800 section body-font flex md:h-screen sm:h-full pb-10">
+    <div class="m-4 absolute top-0 left-0">
+      <a href="http://githubsrm.tech" class="flex justify-center items-center">
+        <GCSRM class="w-32 h-32" />
+      </a>
+    </div>
+    <div
+      class="
+        w-10/12
+        max-w-6xl
+        mx-auto
+        flex flex-wrap
+        justify-between
+        items-center
+      "
+    >
       <div
         class="
-          lg:w-3/5
-          md:w-1/2
-          md:pr-16
-          lg:pr-0
-          pr-0
+          lg:w-7/12
+          w-full
           flex
           space-x-5
           justify-center
@@ -18,15 +29,14 @@
         <Left />
       </div>
       <div
+        id="form"
         class="
-          lg:w-2/6
-          md:w-1/2
+          lg:w-4/12
+          w-full
           bg-white
           rounded-lg
           p-8
           flex flex-col
-          md:ml-auto
-          w-full
           mt-10
           md:mt-0
           h-auto
@@ -60,6 +70,7 @@ import Pagea from "./Pagea.vue";
 import Pageb from "./Pageb.vue";
 import Pagec from "./Pagec.vue";
 import Left from "./Left.vue";
+import GCSRM from "../components/SVG/githubsrmsvg";
 
 export default {
   name: "Main",
@@ -68,6 +79,7 @@ export default {
     Pageb,
     Pagec,
     Left,
+    GCSRM,
   },
   data() {
     return {

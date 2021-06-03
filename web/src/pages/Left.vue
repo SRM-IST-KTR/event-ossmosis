@@ -1,15 +1,6 @@
 <template>
-  <div>
-    <h1
-      class="
-        font-bold
-        text-white
-        text-5xl
-        mb-3
-      "
-    >
-     OSSmosis
-    </h1>
+  <div class="mt-40 lg:mt-0">
+    <h1 class="font-bold text-white text-5xl mb-3">OSSmosis</h1>
 
     <div class="mb-8">
       <Details />
@@ -18,13 +9,6 @@
         <ul class="text-white text-xl">
           <li class="flex">
             <ClockIcon class="w-7 h-7" /><span class="mx-4">Time</span>
-          </li>
-          <li class="flex">
-            <MailIcon class="w-7 h-7" /><a
-              href="mailto:community@githubsrm.tech"
-              class="mx-4"
-              >community@githubsrm.tech</a
-            >
           </li>
         </ul>
       </div>
@@ -42,6 +26,9 @@
       /></a>
       <a href="https://www.linkedin.com/company/githubsrm/"
         ><Linkedin class="w-10 h-10 text-white inline-block"
+      /></a>
+      <a href="mailto:community@githubsrm.tech"
+        ><MailIcon class="w-10 h-10 text-white inline-block"
       /></a>
     </div>
   </div>

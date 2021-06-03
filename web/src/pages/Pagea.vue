@@ -33,6 +33,7 @@ export default {
             ? JSON.parse(sessionStorage.getItem("formdata"))["name"]
             : "",
           placeholder: "GitHub SRM",
+          textarea: false,
         },
         {
           index: "registrationNum",
@@ -41,6 +42,7 @@ export default {
             ? JSON.parse(sessionStorage.getItem("formdata"))["registrationNum"]
             : "",
           placeholder: "RAxxxxxxxxxxxxx",
+          textarea: false,
         },
         {
           index: "email",
@@ -49,6 +51,7 @@ export default {
             ? JSON.parse(sessionStorage.getItem("formdata"))["email"]
             : "",
           placeholder: "gs0000@srmist.edu.in",
+          textarea: false,
         },
         {
           index: "githubId",
@@ -57,6 +60,7 @@ export default {
             ? JSON.parse(sessionStorage.getItem("formdata"))["githubId"]
             : "",
           placeholder: "srm-ist-ktr",
+          textarea: false,
         },
       ],
       icons: ["UserIcon", "HashtagIcon", "MailIcon", "GithubSVG"],
