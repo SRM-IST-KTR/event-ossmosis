@@ -1,6 +1,29 @@
 <template>
-  <div class="mt-40 lg:mt-0">
-    <h1 class="font-bold text-white text-5xl mb-3">OSSmosis</h1>
+  <div class="mt-32 lg:mt-20">
+    <h1 class="font-bold text-white text-center text-5xl mb-1">OSSmosis</h1>
+    <h3 class="font-thin  text-gray-300 text-center text-xl mb-5">Is your project OSS ready?</h3>
+
+ <div class="w-full lg:hidden text-center">
+          <a
+            class="
+              text-md
+              font-extrabold
+              uppercase
+              py-3
+              shadow-lg
+              rounded
+              block
+              leading-normal
+              cursor-pointer
+              text-gray-600
+              bg-white
+            "
+            href="#form"
+          >
+            Apply Now!
+          </a>
+        </div>
+
 
     <div class="mb-8">
       <Details />
@@ -13,45 +36,21 @@
         </ul>
       </div>
     </div>
-
-    <div class="space-x-4 flex justify-center items-center">
-      <a href="https://github.com/SRM-IST-KTR"
-        ><Octocat class="w-10 h-10 text-white inline-block"
-      /></a>
-      <a href="https://twitter.com/githubsrm"
-        ><Twitter class="w-10 h-10 text-white inline-block"
-      /></a>
-      <a href="https://instagram.com/githubsrm"
-        ><Instagram class="w-10 h-10 text-white inline-block"
-      /></a>
-      <a href="https://www.linkedin.com/company/githubsrm/"
-        ><Linkedin class="w-10 h-10 text-white inline-block"
-      /></a>
-      <a href="mailto:community@githubsrm.tech"
-        ><MailIcon class="w-10 h-10 text-white inline-block"
-      /></a>
-    </div>
+    <Footer class="pb-8 hidden lg:flex w-8/12 mx-auto"/>
   </div>
 </template>
 
 <script>
-import Octocat from "../components/SVG/octocat";
-import Twitter from "../components/SVG/twitter";
-import Linkedin from "../components/SVG/linkedin";
-import Instagram from "../components/SVG/instagram";
-import { ClockIcon, MailIcon } from "@heroicons/vue/outline";
+import { ClockIcon } from "@heroicons/vue/outline";
 import Details from "./Details";
+import Footer from "../components/Footer";
 
 export default {
   name: "Left",
   components: {
-    Octocat,
-    Twitter,
-    Linkedin,
-    Instagram,
     ClockIcon,
-    MailIcon,
     Details,
+    Footer,
   },
 };
 </script>

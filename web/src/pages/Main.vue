@@ -1,13 +1,16 @@
 <template>
-  <section class="text-gray-800 section body-font flex md:h-screen sm:h-full pb-10">
+  <section
+    class="text-gray-800 section body-font flex md:h-screen sm:h-full pb-10"
+  >
     <div class="m-4 absolute top-0 left-0">
       <a href="http://githubsrm.tech" class="flex justify-center items-center">
-        <GCSRM class="w-32 h-32" />
+        <GCSRM class="md:w-32 md:h-32 w-24 h-24" />
       </a>
     </div>
     <div
       class="
-        w-10/12
+        w-11/12
+        sm:w-10/1
         max-w-6xl
         mx-auto
         flex flex-wrap
@@ -15,17 +18,7 @@
         items-center
       "
     >
-      <div
-        class="
-          lg:w-7/12
-          w-full
-          flex
-          space-x-5
-          justify-center
-          items-center
-          center
-        "
-      >
+      <div class="lg:w-7/12 w-full flex space-x-5 justify-center items-center">
         <Left />
       </div>
       <div
@@ -35,17 +28,17 @@
           w-full
           bg-white
           rounded-lg
-          p-8
           flex flex-col
           mt-10
           md:mt-0
-          h-auto
+          min-h-detailBox
         "
       >
         <Pagea
           v-if="state == 0"
           @mutate="changea($event)"
           @email="checkmail($event)"
+          class="p-8"
         />
         <Pageb
           v-if="state == 1"
@@ -57,11 +50,14 @@
           @token="tokenCheck($event)"
           @otp="otpCheck($event)"
           @jwt="jwtCheck($event)"
+          class="p-8"
         />
         <Pagec v-if="state == 2" />
       </div>
+      <div class="w-10/12 mt-8 lg:hidden mx-auto">
+        <Footer />
+      </div>
     </div>
-    <router-view />
   </section>
 </template>
 
@@ -70,6 +66,7 @@ import Pagea from "./Pagea.vue";
 import Pageb from "./Pageb.vue";
 import Pagec from "./Pagec.vue";
 import Left from "./Left.vue";
+import Footer from "../components/Footer";
 import GCSRM from "../components/SVG/githubsrmsvg";
 
 export default {
@@ -80,6 +77,7 @@ export default {
     Pagec,
     Left,
     GCSRM,
+    Footer,
   },
   data() {
     return {
@@ -97,7 +95,7 @@ export default {
     sessionStorage.clear();
   },
   mounted() {
-    this.state = 0;
+    this.state = 2;
     this.fields = {};
     this.loading = false;
   },

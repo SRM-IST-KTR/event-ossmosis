@@ -34,7 +34,7 @@
               leading-tight
               focus:outline-none
               focus:bg-white
-              focus:border-purple-500
+              focus:border-gray-600
             "
             v-model="otp"
             type="text"

@@ -1,13 +1,13 @@
 <template>
-  <div id="container" height="500px" weight="500px">
-    <div id="overlay" class="text-center">
+  <div id="container" class="relative h-full overflow-hidden flex w-full">
+    <div class="text-center flex flex-col items-center justify-center">
       <p
         class="
-          2xl:text-5xl
-          xl:text-4xl
-          lg:text-3xl
+          2xl:text-4xl
+          xl:text-3xl
+          lg:text-2xl
           md:text-2xl
-          sm:text-3xl
+          text-3xl
           font-bold
         "
       >
@@ -17,7 +17,10 @@
         You have filled the form successfully
       </p>
     </div>
-    <canvas id="my-canvas"></canvas>
+    <canvas
+      id="my-canvas"
+      class="absolute top-0 bottom-0 left-0 right-0"
+    ></canvas>
   </div>
 </template>
 
@@ -28,10 +31,11 @@ export default {
   name: "Pagec",
   component: { ConfettiGenerator },
   mounted() {
+    // const div = document.getElementById("div");
     const confettiSettings = {
       target: "my-canvas",
-      width: "450",
-      height: "450",
+      height:"500",
+      width:"500"
     };
     const confetti = new ConfettiGenerator(confettiSettings);
     confetti.render();
@@ -42,17 +46,3 @@ export default {
 };
 </script>
 
-<style>
-#container {
-  position: relative;
-}
-#container canvas {
-  position: relative;
-}
-#overlay {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-</style>
