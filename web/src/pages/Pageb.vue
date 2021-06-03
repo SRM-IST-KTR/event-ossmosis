@@ -30,7 +30,7 @@
         </div>
       </div>
     </div>
-    <div class="flex space-x-5 float-right">
+    <div class="flex space-x-4 justify-center">
       <Button :button="{ name: 'Back' }" @click="backHandler" />
       <Button
         :button="button"
@@ -40,10 +40,12 @@
         @click="submitHandler"
       />
     </div>
-    <p v-if="error.status" class="text-red-700">{{ error.body }}</p>
-    <div class="flex space-x-4" v-if="loading">
+    <div class="flex flex-col items-center mt-1">
+    <p v-if="error.status" class="text-red-700 flex justify center">{{ error.body }}</p>
+    <div class="flex space-x-2 justify center items-center" v-if="loading">
       <p class="inline-block">Submitting</p>
       <Loader class="inline-block" />
+    </div>
     </div>
   </section>
 </template>
