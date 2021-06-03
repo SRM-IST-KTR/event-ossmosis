@@ -22,11 +22,14 @@
             "
             v-model="fielddata"
             type="text"
-            :placeholder="field.name"
+            :placeholder="field.placeholder"
             @change="mutate"
             @blur="handleBlur"
           />
         </div>
+        <span v-if="error.length > 0" class="text-xs text-red-700">{{
+        error
+      }}</span>
       </div>
     </div>
     <div
@@ -70,11 +73,14 @@
             "
             v-model="fielddata"
             type="email"
-            :placeholder="field.name"
+            :placeholder="field.placeholder"
             @change="mutate"
             @blur="handleBlur"
           />
         </div>
+        <span v-if="error.length > 0" class="text-xs text-red-700">{{
+        error
+      }}</span>
       </div>
     </div>
     <div class="w-auto md:items-center" v-else>
@@ -87,7 +93,7 @@
             {{ field.name }}
           </label>
         </div>
-        <div class="relative flex flex-wrap items-stretch mb-3">
+        <div class="relative flex flex-wrap items-stretch">
           <span
             v-if="icon === 'UserIcon'"
             class="
@@ -201,16 +207,16 @@
             "
             v-model="fielddata"
             type="text"
-            :placeholder="field.placeholder ? field.placeholder : field.name"
+            :placeholder="field.placeholder"
             @change="mutate"
             @blur="handleBlur"
           />
         </div>
+        <span v-if="error.length > 0" class="text-xs text-red-700">{{
+        error
+      }}</span>
       </div>
     </div>
-    <span v-if="error.length > 0" class="text-xs text-red-700">{{
-      error
-    }}</span>
   </div>
 </template>
 

@@ -78,6 +78,7 @@ export default {
           data: sessionStorage.getItem("formdata")
             ? JSON.parse(sessionStorage.getItem("formdata"))["projectTitle"]
             : "",
+          placeholder: "Landing Page",
         },
         {
           index: "projectDescription",
@@ -87,11 +88,12 @@ export default {
                 "projectDescription"
               ]
             : "",
+          placeholder: "This project is the landing page for GitHub SRM. It...",
         },
         {
           index: "projectLink",
           name: "Project Link",
-          placeholder: "https://github.com/profile/repo",
+          placeholder: "https://github.com/SRM-IST-KTR/githubsrm",
           data: sessionStorage.getItem("formdata")
             ? JSON.parse(sessionStorage.getItem("formdata"))["projectLink"]
             : "",
