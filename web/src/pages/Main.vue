@@ -82,11 +82,10 @@ export default {
     };
   },
   beforeMount() {
-    console.log("beforemount");
     sessionStorage.clear();
   },
   mounted() {
-    this.state = 0;
+    this.state = 2;
     this.fields = {};
     this.loading = false;
   },
