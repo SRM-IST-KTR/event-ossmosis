@@ -6,5 +6,6 @@ module.exports = {
         target: `http://localhost:${process.env.API_PORT}`,
       },
     },
+    disableHostCheck: true,
   },
 };
