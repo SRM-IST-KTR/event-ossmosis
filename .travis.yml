@@ -1,0 +1,16 @@
+language: node_js
+node_js:
+  - lts/*
+cache:
+  directories:
+    - node_modules
+script:
+  - cd web && yarn build
+os:
+  - linux
+deploy:
+  provider: script
+  skip_cleanup: false
+  script: ssh $ssh_server $ssh_command
+  on:
+    branch: main
