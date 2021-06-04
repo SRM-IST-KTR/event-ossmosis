@@ -2,7 +2,6 @@ from rest_framework.permissions import BasePermission
 import requests
 import os
 from dotenv import load_dotenv
-from .utils import checkotp
 
 request = requests.Session()
 

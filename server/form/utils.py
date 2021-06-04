@@ -37,13 +37,17 @@ def checkData(formdata):
 
 
 def checkotp(encjwt, otp):
-    token = encjwt.split()[1]
-    load_dotenv()
-    secret = os.getenv('SECRET')
-    decoded = jwt.decode(token, secret, algorithms=["HS256"])
-    if decoded['otp'] == otp and (time.time()-decoded['time']) < 300:
-        return True
-    return False
+    try:
+        token = encjwt.split()[1]
+        load_dotenv()
+        secret = os.getenv('SECRET')
+        decoded = jwt.decode(token, secret, algorithms=["HS256"])
+        if decoded['otp'] == otp and (time.time()-decoded['time']) < 300:
+            return True
+        return False
+    except Exception as e:
+        print(e)
+        return False
 
 
 def createjwt(otp):
@@ -56,7 +60,7 @@ def createjwt(otp):
 
 
 def createotp():
-    digits = [1,2,3,4,5,6,7,8,9,0]
+    digits = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]
     return ''.join(list(map(str, random.choices(digits, k=6))))
 
 
