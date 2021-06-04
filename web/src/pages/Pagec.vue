@@ -1,5 +1,5 @@
 <template>
-  <div id="container" class="relative h-full overflow-hidden flex w-full">
+  <div id="container" class="relative h-full overflow-hidden flex w-full min-h-detailBox">
     <div class="text-center flex flex-col items-center justify-center m-auto">
       <p
         class="2xl:text-4xl xl:text-3xl lg:text-2xl md:text-2xl text-3xl font-bold"
