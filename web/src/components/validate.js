@@ -11,7 +11,7 @@ export const validate = async (name, data) => {
   } else if (name === "Registration Number") {
     let regex = /^RA[0-9]{13}$/;
     if (!regex.test(data) || data === undefined) {
-      return "Registration number must start with RA and should be 13 characters!";
+      return "Registration number must start with 'RA' and should be 13 characters!";
     }
     return "";
   } else if (name === "Github ID") {
@@ -29,6 +29,12 @@ export const validate = async (name, data) => {
       return "";
     } catch (err) {
       return "Link is either malformed or not a GitHub Link!";
+    }
+  } else if (name === "Validate E-mail") {
+    if (data.length !== 6) {
+      return "OTP should be of 6 digits!";
+    } else {
+      return "";
     }
   } else {
     if (data.length === 0 || data === "") {

@@ -1,17 +1,28 @@
 <template>
-  <section class="form">
+  <section class="w-full">
     <Field
       v-for="(field, i) in fields"
       :key="field.name"
       :field="field"
       :icon="icons[i]"
       @mutate="change($event, field.name)"
-      @error="errorCheck($event)"
     />
-    <div class="flex float-right">
-      <Button :button="button" @click="submitHandler" />
+
+    <div class="flex justify-evenly items-center mt-6">
+      <div
+        v-if="error.length > 0"
+        class="w-full text-xs text-red-500 font-bold text-center"
+      >
+        {{ error }}
+      </div>
+      <div v-else class="w-full"></div>
+      <Button
+        :check="error.length > 0"
+        :disable="error.length > 0"
+        :button="button"
+        @click="submitHandler"
+      />
     </div>
-    <p v-if="error.length > 0" class="text-red-700">{{ error }}</p>
   </section>
 </template>
 
@@ -86,7 +97,7 @@ export default {
         });
         this.$emit("mutate", this.fields);
       } else {
-        this.error = "Form validation error";
+        this.error = "Please check your inputs.";
       }
     },
     change(value, name) {
@@ -99,5 +110,3 @@ export default {
   },
 };
 </script>
-
-<style></style>

@@ -1,5 +1,5 @@
 <template>
-  <section class="form md:justify-center">
+  <section class="w-full">
     <Field
       v-for="(field, i) in fields"
       :key="field.name"
@@ -7,43 +7,32 @@
       :icon="icons[i]"
       @mutate="change($event, field.name)"
     />
+
     <div class="w-full md:items-center">
-      <div class="mb-2">
-        <div class="">
-          <label
-            class="block text-gray-500 font-bold mb-1 md:mb-0 pr-4"
-            for="inline-full-name"
-          >
-            Validate Email
-          </label>
-        </div>
-        <div v-if="!state">
+      <div class="mb-6">
+        <label
+          class="block text-gray-500 font-bold mb-1 md:mb-0"
+          for="inline-full-name"
+          v-if="!state"
+        >
+          {{ otp.name }}
+        </label>
+
+        <div v-if="!state" class="mt-1">
           <Button :button="{ name: 'Get OTP' }" @click="clickHandler" />
         </div>
+
         <div class="" v-else>
-          <input
-            class="
-              bg-gray-200
-              appearance-none
-              border-2 border-gray-200
-              rounded
-              w-full
-              py-2
-              px-4
-              text-gray-700
-              leading-tight
-              focus:outline-none
-              focus:bg-white
-              focus:border-gray-600
-            "
-            v-model="otp"
-            type="text"
-            placeholder="OTP recieved in Email"
+          <Field
+            :field="otp"
+            @mutate="change($event, otp.name)"
+            :icon="'LockClosedIcon'"
           />
         </div>
       </div>
     </div>
-    <div class="flex space-x-4 justify-center">
+
+    <div class="flex justify-evenly">
       <Button :button="{ name: 'Back' }" @click="backHandler" />
       <Button
         :button="button"
@@ -53,10 +42,12 @@
         @click="submitHandler"
       />
     </div>
+
     <div class="flex flex-col items-center mt-1">
       <p v-if="error.status" class="text-red-700 flex justify center">
         {{ error.body }}
       </p>
+
       <div class="flex space-x-2 justify center items-center" v-if="loading">
         <p class="inline-block">Submitting</p>
         <Loader class="inline-block" />
@@ -103,12 +94,17 @@ export default {
             : "",
         },
       ],
+      otp: {
+        index: "otp",
+        name: "Validate E-mail",
+        placeholder: "OTP received in E-mail",
+        data: "",
+      },
       button: {
         name: "Submit",
       },
       icons: ["AnnotationIcon", null, "LinkIcon"],
       token: "",
-      otp: "",
       state: false,
     };
   },
@@ -146,6 +142,9 @@ export default {
       }
     },
     async clickHandler() {
+      // if (!this.$props.email.email) {
+      //   return;
+      // }
       this.state = true;
       sessionStorage.setItem("otp", true);
       await fetch(`/api/v1/email/`, {

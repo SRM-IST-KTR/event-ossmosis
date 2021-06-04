@@ -5,33 +5,83 @@
       v-if="field.name.includes('Description')"
     >
       <div class="mb-2">
-        <div>
-          <label
-            class="block text-gray-500 font-bold mb-1 md:mb-0 pr-4"
-            for="inline-full-name"
-          >
-            {{ field.name }}
-          </label>
-        </div>
-        <div>
-          <textarea
-            class="
-              mr-0
-              bg-gray-200
-              appearance-none
-              border-2
-              rounded
-              w-full
-              py-2
-              px-4
-              text-gray-700
-              leading-tight
-              focus:outline-none
-              focus:bg-white
-              focus:border-gray-600
-              resize-none
-            "
-            :class="error.length > 0 ? 'border-red-500' : 'border-gray-200'"
+        <label
+          class="block text-gray-500 font-bold mb-1 md:mb-0"
+          for="inline-full-name"
+        >
+          {{ field.name }}
+        </label>
+
+        <textarea
+          class="
+            w-full
+            bg-gray-200
+            border-2
+            rounded
+            px-4
+            py-2
+            text-gray-700
+            focus:outline-none
+            resize-none
+            h-24
+          "
+          :class="error.length > 0 ? 'border-red-500' : 'border-gray-200'"
+          v-model="fielddata"
+          type="text"
+          :placeholder="field.placeholder"
+          @change="mutate"
+          @blur="handleBlur"
+        />
+
+        <span v-if="error.length > 0" class="text-xs text-red-500 font-bold">
+          {{ error }}
+        </span>
+      </div>
+    </div>
+
+    <div class="w-full" v-else>
+      <div class="mb-2">
+        <label
+          class="block text-gray-500 font-bold mb-1 md:mb-0"
+          for="inline-full-name"
+        >
+          {{ field.name }}
+        </label>
+
+        <div
+          class="flex items-center bg-gray-200 border-2 rounded w-full px-2"
+          :class="error.length > 0 ? 'border-red-400' : 'border-gray-200'"
+        >
+          <span class="text-blueGray-300 w-5">
+            <UserIcon v-if="icon === 'UserIcon'" class="h-5 w-5 text-black" />
+            <HashtagIcon
+              v-else-if="icon === 'HashtagIcon'"
+              class="h-full w-full text-black"
+            />
+            <MailIcon
+              v-else-if="icon === 'MailIcon'"
+              class="h-full w-full text-black"
+            />
+            <GithubSVG
+              v-else-if="icon === 'GithubSVG'"
+              class="h-full w-full text-black"
+            />
+            <LinkIcon
+              v-else-if="icon === 'LinkIcon'"
+              class="h-full w-full text-b lack"
+            />
+            <AnnotationIcon
+              v-else-if="icon === 'AnnotationIcon'"
+              class="h-full w-full text-black"
+            />
+            <LockClosedIcon
+              v-else-if="icon === 'LockClosedIcon'"
+              class="h-full w-full text-black"
+            />
+          </span>
+
+          <input
+            class="w-full p-2 bg-transparent text-gray-700 focus:outline-none"
             v-model="fielddata"
             type="text"
             :placeholder="field.placeholder"
@@ -39,214 +89,10 @@
             @blur="handleBlur"
           />
         </div>
-        <span v-if="error.length > 0" class="text-xs text-red-700">{{
-          error
-        }}</span>
-      </div>
-    </div>
-    <div
-      class="w-auto md:items-center"
-      v-else-if="field.name === 'College Email'"
-    >
-      <div class="mb-2">
-        <div>
-          <label
-            class="block text-gray-500 font-bold mb-1 md:mb-0 pr-4"
-            for="inline-full-name"
-          >
-            {{ field.name }}
-          </label>
-        </div>
-        <div class="relative flex flex-wrap items-stretch">
-          <span
-            class="
-              z-10
-              h-full
-              leading-snug
-              font-normal
-              absolute
-              text-center text-blueGray-300
-              bg-transparent
-              rounded
-              text-base
-              items-center
-              justify-center
-              w-8
-              pl-3
-              py-3
-            "
-            ><MailIcon class="h-5 w-5 text-black"
-          /></span>
-          <input
-            class="
-              bg-gray-200
-              appearance-none
-              border-2
-              rounded
-              w-full
-              py-3
-              px-9
-              text-gray-700
-              leading-tight
-              focus:outline-none
-              focus:bg-white
-              focus:border-gray-600
-            "
-            :class="error.length > 0 ? 'border-red-500' : 'border-gray-200'"
-            v-model="fielddata"
-            type="email"
-            :placeholder="field.placeholder"
-            @change="mutate"
-            @blur="handleBlur"
-          />
-        </div>
-        <span v-if="error.length > 0" class="text-xs text-red-700">{{
-          error
-        }}</span>
-      </div>
-    </div>
-    <div class="w-auto md:items-center" v-else>
-      <div class="mb-2">
-        <div class="">
-          <label
-            class="block text-gray-500 font-bold mb-1 md:mb-0 pr-4"
-            for="inline-full-name"
-          >
-            {{ field.name }}
-          </label>
-        </div>
-        <div class="relative flex flex-wrap items-stretch">
-          <span
-            v-if="icon === 'UserIcon'"
-            class="
-              z-10
-              h-full
-              leading-snug
-              font-normal
-              absolute
-              text-center text-blueGray-300
-              bg-transparent
-              rounded
-              text-base
-              items-center
-              justify-center
-              w-8
-              pl-3
-              py-3
-            "
-          >
-            <UserIcon class="h-5 w-5 text-black" />
-          </span>
-          <span
-            v-else-if="icon === 'HashtagIcon'"
-            class="
-              z-10
-              h-full
-              leading-snug
-              font-normal
-              absolute
-              text-center text-blueGray-300
-              bg-transparent
-              rounded
-              text-base
-              items-center
-              justify-center
-              w-8
-              pl-3
-              py-3
-            "
-          >
-            <HashtagIcon class="h-5 w-5 text-black" />
-          </span>
-          <span
-            v-else-if="icon === 'GithubSVG'"
-            class="
-              z-10
-              h-full
-              leading-snug
-              font-normal
-              absolute
-              text-center text-blueGray-300
-              bg-transparent
-              rounded
-              text-base
-              items-center
-              justify-center
-              w-8
-              pl-3
-              py-3
-            "
-          >
-            <GithubSVG class="h-5 w-5 text-black" />
-          </span>
-          <span
-            v-else-if="icon === 'LinkIcon'"
-            class="
-              z-10
-              h-full
-              leading-snug
-              font-normal
-              absolute
-              text-center text-blueGray-300
-              bg-transparent
-              rounded
-              text-base
-              items-center
-              justify-center
-              w-8
-              pl-3
-              py-3
-            "
-          >
-            <LinkIcon class="h-5 w-5 text-black" />
-          </span>
-          <span
-            v-else-if="icon === 'AnnotationIcon'"
-            class="
-              z-10
-              h-full
-              leading-snug
-              font-normal
-              absolute
-              text-center text-blueGray-300
-              bg-transparent
-              rounded
-              text-base
-              items-center
-              justify-center
-              w-8
-              pl-3
-              py-3
-            "
-          >
-            <AnnotationIcon class="h-5 w-5 text-black" />
-          </span>
-          <input
-            class="
-              bg-gray-200
-              appearance-none
-              border-2
-              rounded
-              w-full
-              py-3
-              px-9
-              text-gray-700
-              leading-tight
-              focus:outline-none
-              focus:bg-white
-              focus:border-gray-600
-            "
-            :class="error.length > 0 ? 'border-red-500' : 'border-gray-200'"
-            v-model="fielddata"
-            type="text"
-            :placeholder="field.placeholder"
-            @change="mutate"
-            @blur="handleBlur"
-          />
-        </div>
-        <span v-if="error.length > 0" class="text-xs text-red-700">{{
-          error
-        }}</span>
+
+        <span v-if="error.length > 0" class="text-xs text-red-500 font-bold">
+          {{ error }}
+        </span>
       </div>
     </div>
   </div>
@@ -254,7 +100,7 @@
 
 <script>
 import { validate } from "./validate";
-import { UserIcon, MailIcon, AnnotationIcon } from "@heroicons/vue/solid";
+import { UserIcon, MailIcon, AnnotationIcon, LockClosedIcon } from "@heroicons/vue/solid";
 import { HashtagIcon, LinkIcon } from "@heroicons/vue/outline";
 import GithubSVG from "./SVG/githubsvg";
 
@@ -268,6 +114,7 @@ export default {
     GithubSVG,
     AnnotationIcon,
     LinkIcon,
+    LockClosedIcon
   },
   data() {
     return {
@@ -302,5 +149,3 @@ export default {
   },
 };
 </script>
-
-<style></style>

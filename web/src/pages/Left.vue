@@ -27,10 +27,14 @@
     </div>
 
     <div class="w-full">
-      <div class="flex justify-center items-center m-5 text-white">
-        <ClockIcon class="text-white text-7xl w-7 h-7" />
-        <p class="mx-4">
-          Deadline : <span class="font-bold">12 June 2021, 11:59 PM</span>
+      <div class="flex justify-center items-center m-5 text-white text-sm md:text-base">
+        <ClockIcon class="text-white w-10 md:w-7" />
+        <p class="ml-4">
+          Deadline:
+          <span class="font-bold">
+            <br class="sm:hidden" />
+            12 June 2021, 11:59 PM</span
+          >
         </p>
       </div>
       <Footer class="pb-8 lg:pb-0 hidden lg:flex w-8/12 mx-auto" />

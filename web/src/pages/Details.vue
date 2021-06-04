@@ -67,27 +67,30 @@
         <div class="p-2 sm:p-4 md:p-8 flex-auto">
           <div class="tab-content tab-space">
             <div v-bind:class="{ hidden: openTab !== 1, block: openTab === 1 }">
-              <p>Ever wondered how far your project meets OSS criteria?</p>
+              <p>
+                Ever wondered how far your project meets
+                <span class="font-bold">OSS (Open-Source Software)</span>
+                criteria?
+              </p>
               <p>Does your project have a proper commit history?</p>
               <p>A license and a readme?</p>
               <p>Are your pull requests up to the mark?</p>
               <br />
               <p>
-                We wondered about it too, and we ended up with OSSmosis, a
-                chance for you to flex your OSS projects and win exciting
-                schwags from GitHub Community SRM!
-              </p>
-              <p>
-                All you need is to submit your best OSS project done till date
-                and stand a chance to be awarded the honour of "Best OSS
-                Project" by the community.
+                We wondered about it too, and we ended up with
+                <span class="font-bold">OSSmosis</span>, a chance for you to
+                flex your OSS projects and win exciting schwags from
+                <span class="font-bold"> GitHub Community SRM</span>!
               </p>
               <br />
               <p>
-                Visit the link in the bio to know more about the participation
-                rules.
+                All you need is to submit your best OSS project done till date
+                and stand a chance to be awarded the honour of
+                <span class="font-bold">'Best OSS Project'</span> by the
+                community.
               </p>
             </div>
+
             <div v-bind:class="{ hidden: openTab !== 2, block: openTab === 2 }">
               <ul class="list-disc ml-4">
                 <li>
@@ -109,11 +112,12 @@
                 </li>
               </ul>
             </div>
+
             <div v-bind:class="{ hidden: openTab !== 3, block: openTab === 3 }">
               <ul class="list-disc ml-4">
                 <li>
-                  A proper readme and a license file are required for all OSS
-                  projects.
+                  A proper readme and an appropriate license file are required
+                  for all OSS projects.
                 </li>
                 <li>
                   A regular and clear commit history is the marker of a good OSS
@@ -125,12 +129,13 @@
                   about a bug in the project.
                 </li>
                 <li>
-                  Pull Requests are the backbone of any OSS project. A detailed
-                  PR helps the maintainers a lot.
+                  PRs (Pull Request(s)) are the backbone of any OSS project. A
+                  detailed PR helps the maintainers a lot.
                 </li>
                 <li>
                   It is a bonus (but is not required) if you have a CI/CD
-                  pipeline set up in your project.
+                  (Continous Integration/Continous Deployment) pipeline set up
+                  in your project.
                 </li>
                 <li>
                   It would also help (but is not required) to have a good track

@@ -117,7 +117,7 @@ export default {
     sessionStorage.clear();
   },
   mounted() {
-    this.state = 0;
+    this.state = 1;
     this.fields = {};
     this.loading = false;
   },
