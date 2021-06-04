@@ -5,7 +5,8 @@ cache:
   directories:
     - node_modules
 script:
-  - cd web && yarn build
+  - cd web
+  - yarn && yarn build
 os:
   - linux
 deploy:
