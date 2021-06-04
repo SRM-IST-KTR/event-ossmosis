@@ -14,7 +14,7 @@
           font-bold
         "
       >
-        Congratulations
+        Wohooo!!
       </p>
       <p class="2xl:text-3xl xl:text-2xl lg:text-xl md:text-lg sm:text-xl">
         You have filled the form successfully
