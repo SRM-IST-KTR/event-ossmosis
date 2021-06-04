@@ -26,5 +26,4 @@ class CustomPerms(BasePermission):
             'response': token,
         }
         response = request.post(url, data=payload)
-
-        return response.json()["success"]
+        return response.json()["success"] and response.json()["score"] >= 0.5
