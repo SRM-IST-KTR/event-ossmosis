@@ -22,7 +22,20 @@
         </div>
         <div class="" v-else>
           <input
-            class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-600"
+            class="
+              bg-gray-200
+              appearance-none
+              border-2 border-gray-200
+              rounded
+              w-full
+              py-2
+              px-4
+              text-gray-700
+              leading-tight
+              focus:outline-none
+              focus:bg-white
+              focus:border-gray-600
+            "
             v-model="otp"
             type="text"
             placeholder="OTP recieved in Email"
@@ -41,11 +54,13 @@
       />
     </div>
     <div class="flex flex-col items-center mt-1">
-    <p v-if="error.status" class="text-red-700 flex justify center">{{ error.body }}</p>
-    <div class="flex space-x-2 justify center items-center" v-if="loading">
-      <p class="inline-block">Submitting</p>
-      <Loader class="inline-block" />
-    </div>
+      <p v-if="error.status" class="text-red-700 flex justify center">
+        {{ error.body }}
+      </p>
+      <div class="flex space-x-2 justify center items-center" v-if="loading">
+        <p class="inline-block">Submitting</p>
+        <Loader class="inline-block" />
+      </div>
     </div>
   </section>
 </template>

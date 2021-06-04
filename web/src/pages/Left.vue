@@ -5,7 +5,19 @@
     <div>
       <div class="w-full lg:hidden text-center">
         <a
-          class="text-md font-extrabold uppercase py-3 shadow-lg rounded block leading-normal cursor-pointer text-gray-600 bg-white"
+          class="
+            text-md
+            font-extrabold
+            uppercase
+            py-3
+            shadow-lg
+            rounded
+            block
+            leading-normal
+            cursor-pointer
+            text-gray-600
+            bg-white
+          "
           href="#form"
         >
           Apply Now!

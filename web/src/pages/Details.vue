@@ -1,7 +1,20 @@
 <template>
   <div class="flex flex-wrap mt-2 lg:mt-0">
     <div class="w-full">
-      <ul class="flex justify-between mb-0 list-none pb-4 flex-row uppercase font-bold text-xxs sm:text-xs">
+      <ul
+        class="
+          flex
+          justify-between
+          mb-0
+          list-none
+          pb-4
+          flex-row
+          uppercase
+          font-bold
+          text-xxs
+          sm:text-xs
+        "
+      >
         <li class="-mb-px w-full text-center">
           <a
             class="py-3 shadow-lg rounded block leading-normal cursor-pointer"
@@ -40,7 +53,16 @@
         </li>
       </ul>
       <div
-        class="relative flex flex-col min-w-0 break-words bg-white w-full shadow-lg rounded"
+        class="
+          relative
+          flex flex-col
+          min-w-0
+          break-words
+          bg-white
+          w-full
+          shadow-lg
+          rounded
+        "
       >
         <div class="p-2 sm:p-4 md:p-8 flex-auto">
           <div class="tab-content tab-space">

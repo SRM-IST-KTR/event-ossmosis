@@ -1,6 +1,16 @@
 <template>
   <section
-    class="text-gray-800 h-full items-center justify-center block mt-32 sm:mt-20 lg:mt-0 lg:flex"
+    class="
+      text-gray-800
+      h-full
+      items-center
+      justify-center
+      block
+      mt-32
+      sm:mt-20
+      lg:mt-0
+      lg:flex
+    "
   >
     <div class="m-4 absolute top-0 left-0">
       <a href="http://githubsrm.tech/" class="flex justify-center items-center">
@@ -21,12 +31,29 @@
       </div>
 
       <div
-        class="w-11/12 xl:w-full max-w-6xl mx-auto flex flex-wrap justify-between items-start h-full"
+        class="
+          w-11/12
+          xl:w-full
+          max-w-6xl
+          mx-auto
+          flex flex-wrap
+          justify-between
+          items-start
+          h-full
+        "
       >
         <Left />
         <div
           id="form"
-          class="lg:w-4/12 w-full bg-white rounded-lg flex flex-col items-center justify-center"
+          class="
+            lg:w-4/12
+            w-full
+            bg-white
+            rounded-lg
+            flex flex-col
+            items-center
+            justify-center
+          "
         >
           <Pagea
             v-if="state == 0"

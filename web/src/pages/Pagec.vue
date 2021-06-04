@@ -1,8 +1,18 @@
 <template>
-  <div id="container" class="relative h-full overflow-hidden flex w-full min-h-detailBox">
+  <div
+    id="container"
+    class="relative h-full overflow-hidden flex w-full min-h-detailBox"
+  >
     <div class="text-center flex flex-col items-center justify-center m-auto">
       <p
-        class="2xl:text-4xl xl:text-3xl lg:text-2xl md:text-2xl text-3xl font-bold"
+        class="
+          2xl:text-4xl
+          xl:text-3xl
+          lg:text-2xl
+          md:text-2xl
+          text-3xl
+          font-bold
+        "
       >
         Congratulations
       </p>
@@ -10,10 +20,7 @@
         You have filled the form successfully
       </p>
     </div>
-    <canvas
-      id="my-canvas"
-      class="absolute m-auto"
-    ></canvas>
+    <canvas id="my-canvas" class="absolute m-auto"></canvas>
   </div>
 </template>
 
@@ -38,4 +45,3 @@ export default {
   },
 };
 </script>
-
