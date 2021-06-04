@@ -135,10 +135,14 @@ export default {
       this.$emit("back", "0");
     },
     change(value, name) {
-      for (let i in this.fields) {
-        if (name === this.fields[i]["name"]) {
-          this.fields[i]["data"] = value;
+      if (name !== "Validate E-mail") {
+        for (let i in this.fields) {
+          if (name === this.fields[i]["name"]) {
+            this.fields[i]["data"] = value;
+          }
         }
+      } else {
+        this.otp.data = value;
       }
     },
     async clickHandler() {
