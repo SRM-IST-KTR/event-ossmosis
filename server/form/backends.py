@@ -10,8 +10,7 @@ request = requests.Session()
 class CustomPerms(BasePermission):
     def has_permission(self, request, view) -> bool:
         try:
-            return self.checkToken(token=request.META['HTTP_X_RECAPTCHA_TOKEN']) and \
-                   checkotp(request.headers['Authorization'], request.data['otp'])
+            return self.checkToken(token=request.META['HTTP_X_RECAPTCHA_TOKEN'])
         except Exception as e:
             print(e)
             return False

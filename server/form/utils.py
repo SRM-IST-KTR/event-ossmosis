@@ -3,7 +3,6 @@ from dotenv import load_dotenv
 import os
 import jwt
 import time
-import math
 import random
 from jinja2 import Template
 import pathlib
@@ -38,10 +37,10 @@ def checkData(formdata):
 
 
 def checkotp(encjwt, otp):
-    split = encjwt.split()
+    token = encjwt.split()[1]
     load_dotenv()
     secret = os.getenv('SECRET')
-    decoded = jwt.decode(split[1], secret, algorithms=["HS256"])
+    decoded = jwt.decode(token, secret, algorithms=["HS256"])
     if decoded['otp'] == otp and (time.time()-decoded['time']) < 300:
         return True
     return False
@@ -50,24 +49,20 @@ def checkotp(encjwt, otp):
 def createjwt(otp):
     load_dotenv()
     secret = os.getenv('SECRET')
-    encoded_jwt = jwt.encode(
-        {"otp": otp, "time": time.time()}, secret, algorithm="HS256")
+    encoded_jwt = jwt.encode({
+        "otp": otp, "time": time.time()
+    }, secret, algorithm="HS256")
     return encoded_jwt
 
 
 def createotp():
-    otp = ""
-    digits = "0123456789"
-    for i in range(6):
-        otp += digits[math.floor(random.random() * 10)]
-    return otp
+    digits = [1,2,3,4,5,6,7,8,9,0]
+    return ''.join(list(map(str, random.choices(digits, k=6))))
 
 
 def emailbody(name, file, otp=None):
     with open(f'{pathlib.Path.cwd()}/form/{file}') as file_:
         template = Template(file_.read())
-
         if otp:
             return template.render(name=name, otp=otp)
-
         return template.render(name=name)

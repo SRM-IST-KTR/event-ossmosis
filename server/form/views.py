@@ -1,4 +1,5 @@
-from .utils import checkData, checkotp, createjwt, createotp, emailbody
+from rest_framework import response
+from .utils import checkotp, createjwt, createotp, emailbody
 from rest_framework.response import Response
 from django.http import HttpResponse
 from rest_framework.views import APIView
@@ -23,6 +24,10 @@ class DataEntry(APIView):
     serializer_class = DataEntrySerializer
 
     def post(self, request, **kwargs) -> Response:
+        if checkotp(request.headers['Authorization'], request.data['otp']) is False:
+            return response.Response({
+                "error": "invalid otp"
+            }, status=status.HTTP_400_BAD_REQUEST) 
         if self.serializer_class(data=request.data).is_valid():
             if database_entry(request.data['fields']):
                 pass
@@ -61,9 +66,9 @@ class DataEntry(APIView):
                     },
                 }
             )
-            return HttpResponse("Data received successfully", status=status.HTTP_200_OK)
+            return HttpResponse("data received successfully", status=status.HTTP_200_OK)
         else:
-            return HttpResponse("Bad request", status=status.HTTP_400_BAD_REQUEST)
+            return HttpResponse("bad request", status=status.HTTP_400_BAD_REQUEST)
 
 
 class Email(APIView):
