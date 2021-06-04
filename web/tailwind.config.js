@@ -13,7 +13,11 @@ module.exports = {
     },
   },
   variants: {
-    extend: { margin: ["first", "last"] },
+    extend: {
+      margin: ["first", "last"],
+      padding: ["hover"],
+      borderRadius: ["hover"],
+    },
   },
   plugins: [],
 };

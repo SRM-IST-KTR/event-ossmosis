@@ -12,7 +12,7 @@
       lg:flex
     "
   >
-    <div class="m-4 absolute top-0 left-0">
+    <div class="mt-2 absolute top-0 left-0">
       <a href="http://githubsrm.tech/" class="flex justify-center items-center">
         <GCSRM class="w-24 h-24 md:w-32 md:h-32" />
       </a>
@@ -75,7 +75,9 @@
           />
           <Pagec v-if="state == 2" />
         </div>
-        <div class="w-11/12 xl:w-full mt-8 mb-8 lg:hidden mx-auto">
+        <div
+          class="w-11/12 xl:w-full mt-8 mb-24 sm:mb-6 lg:mb-8 lg:hidden mx-auto"
+        >
           <Footer />
         </div>
       </div>
@@ -117,7 +119,7 @@ export default {
     sessionStorage.clear();
   },
   mounted() {
-    this.state = 1;
+    this.state = 0;
     this.fields = {};
     this.loading = false;
   },

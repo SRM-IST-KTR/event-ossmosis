@@ -1,13 +1,18 @@
 <template>
   <div class="relative h-screen overflow-hidden">
-    <div class="text">
-      <div class="flex flex-col items-center">
+    <div class="text w-11/12">
+      <div class="flex flex-col items-center justify-center">
         <p class="text-7xl mb-4">404</p>
-        <a
-          href="/"
-          class="rounded-lg p-2 border-white border-2 border-opacity-25"
-          ><button class="text-4xl">Go back home</button></a
+        <button
+          class="
+            text-2xl
+            border-white border-2 border-opacity-25
+            rounded-lg
+            p-2
+          "
         >
+          <a href="/"> Go back home </a>
+        </button>
       </div>
     </div>
     <div class="space">
@@ -24,7 +29,7 @@
 <script>
 export default {
   mounted() {
-    setInterval(() => location.replace("/"), 15000);
+    setInterval(() => this.$router.push("/"), 15000);
   },
 };
 </script>
