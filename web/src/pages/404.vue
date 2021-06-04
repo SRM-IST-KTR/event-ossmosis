@@ -1,18 +1,29 @@
 <template>
-  <div class="space">
+  <div class="relative h-screen overflow-hidden">
     <div class="text">
-      <div class="align-middle">
-        <h1>404</h1>
+      <div class="flex flex-col items-center">
+        <p class="text-7xl mb-4">404</p>
+        <a href="/" class="rounded-lg p-2 border-white border-2 border-opacity-25"><button class="text-4xl">Go back home</button></a>
       </div>
     </div>
-    <div class="orbit-1"></div>
-    <div class="moon-1 sm"></div>
-    <div class="orbit-2"></div>
-    <div class="moon-2 sm"></div>
-    <div class="orbit-3"></div>
-    <div class="moon-3"></div>
+    <div class="space">
+      <div class="orbit-1"></div>
+      <div class="moon-1 sm"></div>
+      <div class="orbit-2"></div>
+      <div class="moon-2 sm"></div>
+      <div class="orbit-3"></div>
+      <div class="moon-3"></div>
+    </div>
   </div>
 </template>
+
+<script>
+export default {
+  mounted() {
+    setInterval(()=>location.replace("/"),15000)
+  }
+}
+</script>
 
 <style>
 html,
@@ -36,34 +47,24 @@ body {
 .space > div {
   position: absolute;
 }
-.space .text {
-  display: table;
+.text {
   z-index: 100;
-  margin-top: -250px;
-  margin-left: -250px;
-  width: 500px;
-  height: 500px;
   color: #fff;
-}
-.space .text .align-middle {
-  display: table-cell;
-  vertical-align: middle;
-  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 .space .text h1 {
   font-size: 140px;
   line-height: 0.01em;
-}
-.space .text p {
-  font-size: 18px;
-  color: #687c8f;
 }
 .space div[class^="moon"] {
   background: url("https://i.imgur.com/0i18KL5.png");
   background-size: 60px;
   width: 60px;
   height: 60px;
-  z-index: 10;
+  z-index: 4;
 }
 .space div[class^="moon"].sm {
   background-size: 30px;
@@ -93,7 +94,7 @@ body {
   height: 500px;
   border-radius: 250px;
   background: #3f5468;
-  z-index: 8;
+  z-index: 3;
 }
 .space .orbit-2 {
   margin-top: -340px;
@@ -102,7 +103,7 @@ body {
   height: 680px;
   border-radius: 340px;
   background: #3a4f64;
-  z-index: 7;
+  z-index: 2;
 }
 .space .orbit-3 {
   margin-top: -395px;
@@ -111,7 +112,7 @@ body {
   height: 790px;
   border-radius: 395px;
   background: #374c61;
-  z-index: 6;
+  z-index: 1;
 }
 @keyframes orbit1 {
   from {
