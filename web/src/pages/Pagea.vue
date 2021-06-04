@@ -6,19 +6,19 @@
       :field="field"
       :icon="icons[i]"
       @mutate="change($event, field.name)"
+      @checkError="updateError($event)"
     />
 
     <div class="flex justify-evenly items-center mt-6">
       <div
-        v-if="error.length > 0"
+        v-if="disabledButton"
         class="w-full text-xs text-red-500 font-bold text-center"
       >
-        {{ error }}
+        {{ warning }}
       </div>
       <div v-else class="w-full"></div>
       <Button
-        :check="error.length > 0"
-        :disable="error.length > 0"
+        :disable="disabledButton"
         :button="button"
         @click="submitHandler"
       />
@@ -44,6 +44,7 @@ export default {
             ? JSON.parse(sessionStorage.getItem("formdata"))["name"]
             : "",
           placeholder: "GitHub SRM",
+          error: "",
         },
         {
           index: "registrationNum",
@@ -52,6 +53,7 @@ export default {
             ? JSON.parse(sessionStorage.getItem("formdata"))["registrationNum"]
             : "",
           placeholder: "RAxxxxxxxxxxxxx",
+          error: "",
         },
         {
           index: "email",
@@ -60,6 +62,7 @@ export default {
             ? JSON.parse(sessionStorage.getItem("formdata"))["email"]
             : "",
           placeholder: "gs0000@srmist.edu.in",
+          error: "",
         },
         {
           index: "githubId",
@@ -68,6 +71,7 @@ export default {
             ? JSON.parse(sessionStorage.getItem("formdata"))["githubId"]
             : "",
           placeholder: "srm-ist-ktr",
+          error: "",
         },
       ],
       icons: ["UserIcon", "HashtagIcon", "MailIcon", "GithubSVG"],
@@ -75,7 +79,8 @@ export default {
         name: "Next",
         state: false,
       },
-      error: "",
+      warning: "",
+      disabledButton: false,
     };
   },
   methods: {
@@ -97,7 +102,8 @@ export default {
         });
         this.$emit("mutate", this.fields);
       } else {
-        this.error = "Please check your inputs.";
+        this.warning = "Please check your inputs.";
+        this.disabledButton = true;
       }
     },
     change(value, name) {
@@ -106,6 +112,10 @@ export default {
           this.fields[i]["data"] = value;
         }
       }
+    },
+    updateError(value) {
+      if (value !== "") this.disabledButton = false;
+      // else this.disabledButton = true;
     },
   },
 };

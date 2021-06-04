@@ -13,7 +13,7 @@
       focus:outline-none
     "
     :disabled="disable"
-    :class="check && disable ? 'bg-gray-500 cursor-not-allowed' : 'bg-black'"
+    :class="disable ? 'bg-gray-500 cursor-not-allowed' : 'bg-black'"
   >
     {{ button.name }}
   </button>
@@ -22,7 +22,7 @@
 <script>
 export default {
   name: "Button",
-  props: ["button", "disable", "check"],
+  props: ["button", "disable"],
 };
 </script>
 
