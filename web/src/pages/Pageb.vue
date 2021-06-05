@@ -42,8 +42,8 @@
       />
     </div>
 
-    <div class="flex flex-col items-center mt-1">
-      <p v-if="error.status" class="text-red-700 flex justify center">
+    <div class="flex flex-col items-center mt-3">
+      <p v-if="error.status" class="text-red-500 text-center text-xs font-bold">
         {{ error.body }}
       </p>
 

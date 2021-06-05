@@ -1,6 +1,6 @@
 <template>
   <div class="w-full">
-    <div class="mb-2">
+    <div class="mb-4">
       <label
         class="block text-gray-500 font-bold mb-1 md:mb-0"
         for="inline-full-name"
