@@ -27,7 +27,16 @@
     </div>
 
     <div class="w-full">
-      <div class="flex justify-center items-center m-5 text-white text-sm md:text-base">
+      <div
+        class="
+          flex
+          justify-center
+          items-center
+          m-5
+          text-white text-sm
+          md:text-base
+        "
+      >
         <ClockIcon class="text-white w-10 md:w-7" />
         <p class="ml-4">
           Deadline:
