@@ -21,9 +21,7 @@
     <div class="flex flex-col min-h-80-screen">
       <div class="w-11/12 xl:w-full max-w-6xl mx-auto">
         <div class="lg:w-7/12 w-full">
-          <h1 class="font-bold text-white text-center text-5xl mb-1">
-            OSSmosis
-          </h1>
+          <Ossmosis class="h-1/2 w-1/2 m-auto" />
           <h3 class="font-thin text-gray-300 text-center text-xl mb-5">
             Is your project OSS ready?
           </h3>
@@ -92,6 +90,7 @@ import Pagec from "./Pagec.vue";
 import Left from "./Left.vue";
 import Footer from "../components/Footer";
 import GCSRM from "../components/SVG/githubsrmsvg";
+import Ossmosis from "../components/SVG/ossmosis.vue";
 
 export default {
   name: "Main",
@@ -102,6 +101,7 @@ export default {
     Left,
     GCSRM,
     Footer,
+    Ossmosis,
   },
   data() {
     return {
