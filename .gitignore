@@ -496,3 +496,4 @@ Thumbs.db
 # RSA Keys
 deploy_rsa
 deploy_rsa.pub
+server/static
