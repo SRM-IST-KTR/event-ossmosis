@@ -8,8 +8,8 @@ def database_entry(data):
         load_dotenv()
         mongo_string = os.getenv('MONGODB_AUTH_URI')
         client = MongoClient(mongo_string)
-        database = client['test']
-        col = database['test']
+        database = client[os.getenv('MONGODB_DB')]
+        col = database['users']
         col.insert_one(data)
         return True
     except Exception as e:

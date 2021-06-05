@@ -27,7 +27,7 @@ class DataEntry(APIView):
         if checkotp(request.headers['Authorization'], request.data['otp']) is False:
             return response.Response({
                 "error": "invalid otp"
-            }, status=status.HTTP_400_BAD_REQUEST) 
+            }, status=status.HTTP_400_BAD_REQUEST)
         if self.serializer_class(data=request.data).is_valid():
             if database_entry(request.data['fields']):
                 pass
@@ -48,7 +48,7 @@ class DataEntry(APIView):
                 Content={
                     'Simple': {
                         'Subject': {
-                            'Data': 'Conformation | GitHub Community SRM',
+                            'Data': 'Submission Confirmation | GitHub Community SRM',
                             'Charset': 'utf-8'
                         },
                         'Body': {
@@ -66,9 +66,9 @@ class DataEntry(APIView):
                     },
                 }
             )
-            return HttpResponse("data received successfully", status=status.HTTP_200_OK)
+            return HttpResponse("Data Received Successfully", status=status.HTTP_200_OK)
         else:
-            return HttpResponse("bad request", status=status.HTTP_400_BAD_REQUEST)
+            return HttpResponse("Bad Request", status=status.HTTP_400_BAD_REQUEST)
 
 
 class Email(APIView):
@@ -83,10 +83,9 @@ class Email(APIView):
 
     def post(self, request, **kwargs) -> Response:
 
-        otp = createotp()
-        jwt = createjwt(otp)
-
         try:
+            otp = createotp()
+            jwt = createjwt(otp)
 
             if self.serializer_class(data=request.data).is_valid():
                 response = client.send_email(

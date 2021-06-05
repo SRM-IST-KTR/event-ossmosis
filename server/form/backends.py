@@ -2,7 +2,6 @@ from rest_framework.permissions import BasePermission
 import requests
 import os
 from dotenv import load_dotenv
-from .utils import checkotp
 
 request = requests.Session()
 
@@ -26,5 +25,4 @@ class CustomPerms(BasePermission):
             'response': token,
         }
         response = request.post(url, data=payload)
-
-        return response.json()["success"]
+        return response.json()["success"] and response.json()["score"] >= 0.5

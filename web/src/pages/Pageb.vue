@@ -36,19 +36,21 @@
       <Button :button="{ name: 'Back' }" @click="backHandler" />
       <Button
         :button="button"
-        :disabled="!state"
         :disable="!state"
         :check="true"
         @click="submitHandler"
       />
     </div>
 
-    <div class="flex flex-col items-center mt-1">
-      <p v-if="error.status" class="text-red-700 flex justify center">
+    <div class="flex flex-col items-center mt-3">
+      <p v-if="error.status" class="text-red-500 text-center text-xs font-bold">
         {{ error.body }}
       </p>
 
-      <div class="flex space-x-2 justify center items-center" v-if="loading">
+      <div
+        class="flex space-x-2 justify center items-center mt-2"
+        v-if="loading"
+      >
         <p class="inline-block">Submitting</p>
         <Loader class="inline-block" />
       </div>
@@ -60,6 +62,7 @@
 import Field from "../components/Field";
 import Button from "../components/Button.vue";
 import Loader from "../components/SVG/loader";
+
 export default {
   name: "Pageb",
   props: ["email", "error", "loading"],
@@ -74,6 +77,7 @@ export default {
             ? JSON.parse(sessionStorage.getItem("formdata"))["projectTitle"]
             : "",
           placeholder: "Landing Page",
+          error: "",
         },
         {
           index: "projectDescription",
@@ -84,6 +88,8 @@ export default {
               ]
             : "",
           placeholder: "This project is the landing page for GitHub SRM. It...",
+          error: "",
+          textarea: true,
         },
         {
           index: "projectLink",
@@ -92,6 +98,7 @@ export default {
           data: sessionStorage.getItem("formdata")
             ? JSON.parse(sessionStorage.getItem("formdata"))["projectLink"]
             : "",
+          error: "",
         },
       ],
       otp: {
@@ -99,6 +106,7 @@ export default {
         name: "Validate E-mail",
         placeholder: "OTP received in E-mail",
         data: "",
+        error: "",
       },
       button: {
         name: "Submit",
@@ -135,16 +143,20 @@ export default {
       this.$emit("back", "0");
     },
     change(value, name) {
-      for (let i in this.fields) {
-        if (name === this.fields[i]["name"]) {
-          this.fields[i]["data"] = value;
+      if (name !== "Validate E-mail") {
+        for (let i in this.fields) {
+          if (name === this.fields[i]["name"]) {
+            this.fields[i]["data"] = value;
+          }
         }
+      } else {
+        this.otp.data = value;
       }
     },
     async clickHandler() {
-      // if (!this.$props.email.email) {
-      //   return;
-      // }
+      if (!this.$props.email.email) {
+        return;
+      }
       this.state = true;
       sessionStorage.setItem("otp", true);
       await fetch(`/api/v1/email/`, {
