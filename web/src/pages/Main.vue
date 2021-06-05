@@ -158,7 +158,7 @@ export default {
         },
         body: JSON.stringify({
           fields: this.fields,
-          otp: this.otp.data.data,
+          otp: this.otp.data,
         }),
       });
       this.loading = false;

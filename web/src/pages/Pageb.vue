@@ -146,11 +146,11 @@ export default {
       if (name !== "Validate E-mail") {
         for (let i in this.fields) {
           if (name === this.fields[i]["name"]) {
-            this.fields[i]["data"] = value;
+            this.fields[i]["data"] = value.data;
           }
         }
       } else {
-        this.otp.data = value;
+        this.otp.data = value.data;
       }
     },
     async clickHandler() {
