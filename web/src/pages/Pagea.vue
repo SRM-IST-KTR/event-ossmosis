@@ -6,7 +6,6 @@
       :field="field"
       :icon="icons[i]"
       @mutate="change($event, field.name)"
-      @checkError="updateError($event)"
     />
 
     <div class="flex justify-evenly items-center mt-6">
@@ -109,13 +108,14 @@ export default {
     change(value, name) {
       for (let i in this.fields) {
         if (name === this.fields[i]["name"]) {
-          this.fields[i]["data"] = value;
+          this.fields[i]["data"] = value.data;
         }
       }
-    },
-    updateError(value) {
-      if (value !== "") this.disabledButton = false;
-      // else this.disabledButton = true;
+      if (value.error.length > 0) {
+        this.disabledButton = true;
+      } else {
+        this.disabledButton = false;
+      }
     },
   },
 };

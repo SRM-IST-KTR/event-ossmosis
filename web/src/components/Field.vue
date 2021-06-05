@@ -119,23 +119,17 @@ export default {
       this.fielddata = value;
     },
     mutate: async function () {
-      this.$emit("mutate", this.fielddata.trim());
       this.error = await validate(
         this.$props.field.name,
         this.fielddata ? this.fielddata.trim() : ""
       );
-      if (this.error.length > 0) {
-        this.$emit("checkError", this.error);
-      }
+      this.$emit("mutate", { error: this.error, data: this.fielddata.trim() });
     },
     async handleBlur() {
       this.error = await validate(
         this.$props.field.name,
         this.fielddata ? this.fielddata.trim() : ""
       );
-      if (this.error.length > 0) {
-        this.$emit("checkError", this.error);
-      }
     },
   },
 };

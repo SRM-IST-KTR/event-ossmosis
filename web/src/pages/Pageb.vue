@@ -36,7 +36,6 @@
       <Button :button="{ name: 'Back' }" @click="backHandler" />
       <Button
         :button="button"
-        :disabled="!state"
         :disable="!state"
         :check="true"
         @click="submitHandler"
