@@ -42,7 +42,7 @@
           Deadline:
           <span class="font-bold">
             <br class="sm:hidden" />
-            12 June 2021, 11:59 PM</span
+            21 June 2021, 11:59 PM</span
           >
         </p>
       </div>
